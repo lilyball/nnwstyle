@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: OpenID::Server::Signatory</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">OpenID::Server::Signatory</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/openid/server_rb.html">
+                lib/openid/server.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="../../Object.html">Object</a> responsible for signing responses,
+and checking signatures.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000069">create_association</a>&nbsp;&nbsp;
+      <a href="#M000070">get_association</a>&nbsp;&nbsp;
+      <a href="#M000071">invalidate</a>&nbsp;&nbsp;
+      <a href="#M000066">new</a>&nbsp;&nbsp;
+      <a href="#M000068">sign</a>&nbsp;&nbsp;
+      <a href="#M000067">verify</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">dumb_key</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000066.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(store)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Accepts an object that implements the <a
+href="../Store.html">OpenID::Store</a> interface. See <a
+href="../FilesystemStore.html">OpenID::FilesystemStore</a> for a simple
+file based store.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000069.html');return false;">
+          <span class="method-name">create_association</span><span class="method-args">(dumb=true, assoc_type='HMAC-SHA1')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Make a new assocation.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000070.html');return false;">
+          <span class="method-name">get_association</span><span class="method-args">(assoc_handle, dumb)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get an association by assoc_handle and mode
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000071.html');return false;">
+          <span class="method-name">invalidate</span><span class="method-args">(assoc_handle, dumb)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invalidate an association by assoc_handle and mode
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000068.html');return false;">
+          <span class="method-name">sign</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sign a response, creating a signature based on everything in it&#8217;s
+<tt>signed</tt> array. Returns a new response object with sig and signed
+values in its field set.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="Signatory.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('Signatory.src/M000067.html');return false;">
+          <span class="method-name">verify</span><span class="method-args">(assoc_handle, sig, signed_pairs, dumb=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Verify that the signature for some data is valid.
+</p>
+<h2>Paramters</h2>
+<dl>
+<dt><tt>assoc_handle</tt></dt><dd>The association handle used to get the secret out of the store, and passed
+in via openid.assoc_handle.
+
+</dd>
+<dt><tt>sig</tt></dt><dd>Value of openid.sig
+
+</dd>
+<dt><tt>signed_pairs</tt></dt><dd>Array of Array pairs of key, value signed data.
+
+</dd>
+<dt><tt>dumb</tt></dt><dd>boolean representing whether this is a dumb mode request
+
+</dd>
+</dl>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

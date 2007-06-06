@@ -1,0 +1,100 @@
+/* 
+ *
+ * NETNEWSWIRE STYLESHEET
+ * BD Aqua Floating
+ * Copyright 2005 by Wolfgang Bartelme
+ *
+ */
+ 
+body {
+	background: #fff;
+	margin: 0;
+	padding: 0;
+	font: 100%/160% "Lucida Grande", sans-serif;
+	color: #333;
+}
+h1 {
+  border-bottom: 1px solid #1C73DF;
+  margin: 0;
+  padding: 0;
+}
+h1 a {
+	background: #3595FE url("bg_header.png") repeat-x 0px 0px; 
+	border: none;
+	color: #fff;
+	display: block;
+	font-size: 60%;
+	padding: 6px 0 6px 15px;
+	text-decoration: none;
+	text-shadow: 2px 2px 2px #0149A3;
+}
+html body h1 a:hover {
+	background-color: #3EA0FE;
+	background-position: 0px -200px;
+  border: none;
+	color: #fff;
+} 
+div#description {
+	padding: 1em 15px;
+	max-width: 50em;
+}
+div#description p img.right {
+	float: right;
+	margin: 0 0 5px 5px;
+}
+p#info {
+	background: #ebebeb url("bg_info.png") repeat-x 0px 0px;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
+	padding: 0.5em 0;
+}
+p#info span {
+	display: block;
+	margin: 0.2em 15px;
+}
+p#info span:before {
+	font-weight: bold;
+	color: #777;
+}
+p#info a,
+div#description a {
+	color: #3D80DF;
+	border-bottom: 1px dotted inherit;
+	text-decoration: none;
+}
+p#info a:hover,
+div#description a:hover {
+	color: #4F73C9;
+	border-bottom: 1px solid inherit;
+}
+p#info .newsItemSource > a:first-child {
+	border: none;
+}
+div#description a:visited {
+	background: transparent url("bg_visited.png") no-repeat 100% 50%;
+	padding-right: 16px;
+}
+p#info span.newsItemDate:before {
+	content: "Date: ";
+}
+p#info span.newsItemCreator:before {
+	content: "By: ";
+}
+p#info span.newsItemCommentsLink:before {
+	content: "Comments: ";
+}
+p#info span.newsItemSource:before {
+	content: "From: ";
+}
+p#info span.newsItemSubject:before {
+	content: "Subject: ";
+}
+div#extra p {
+	padding: 10px 20px;
+}
+blockquote {
+	background: #eee;
+	padding: 5px 30px;
+	border-left: 1px solid #bbb;
+	margin: 0;
+}

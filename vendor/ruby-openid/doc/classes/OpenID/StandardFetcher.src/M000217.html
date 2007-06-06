@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>post (OpenID::StandardFetcher)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/fetchers.rb, line 88</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">body</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">url</span>)
+        <span class="ruby-identifier">http</span> = <span class="ruby-identifier">get_http_obj</span>(<span class="ruby-identifier">uri</span>)
+        <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">post</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>, <span class="ruby-identifier">body</span>,
+                         {<span class="ruby-value str">&quot;Content-type&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;application/x-www-form-urlencoded&quot;</span>})
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">else</span>
+        [<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

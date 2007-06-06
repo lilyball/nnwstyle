@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_remove_dot_segments (OpenID::Util)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/urinorm.rb, line 13</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Util</span>.<span class="ruby-identifier">_remove_dot_segments</span>(<span class="ruby-identifier">path</span>)
+      <span class="ruby-identifier">result_segments</span> = []
+
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-value str">'../'</span>)
+          <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>[<span class="ruby-value">3</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-value str">'./'</span>)
+          <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-value str">'/./'</span>)
+          <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'/.'</span>
+          <span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">starts_with?</span>(<span class="ruby-value str">'/../'</span>)
+          <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>[<span class="ruby-value">3</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+          <span class="ruby-identifier">result_segments</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result_segments</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'/..'</span>
+          <span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span>
+          <span class="ruby-identifier">result_segments</span>.<span class="ruby-identifier">pop</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result_segments</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'..'</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'.'</span>
+          <span class="ruby-identifier">path</span> = <span class="ruby-value str">''</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+          <span class="ruby-identifier">i</span> = <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'/'</span>
+          <span class="ruby-identifier">i</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-identifier">i</span>)
+          <span class="ruby-identifier">i</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">length</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">result_segments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">i</span>]
+          <span class="ruby-identifier">path</span> = <span class="ruby-identifier">path</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result_segments</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">''</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

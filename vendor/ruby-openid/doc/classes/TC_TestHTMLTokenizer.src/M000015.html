@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_full (TC_TestHTMLTokenizer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/htmltokenizer.rb, line 325</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_full</span>
+      <span class="ruby-identifier">page</span> = <span class="ruby-value str">&quot;&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;TITLE&gt;This is the title&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;!-- Here comes the &lt;a href=\&quot;missing.link\&quot;&gt;blah&lt;/a&gt;
+comment body
+ --&gt;
+&lt;BODY&gt;
+  &lt;H1&gt;This is the header&lt;/H1&gt;
+  &lt;P&gt;
+    This is the paragraph, it contains
+    &lt;a href=\&quot;link.html\&quot;&gt;links&lt;/a&gt;, 
+    &lt;img src=\&quot;blah.gif\&quot; optional alt='images
+are
+really cool'&gt;.  Ok, here is some more text and
+    &lt;A href=\&quot;http://another.link.com/\&quot; target=\&quot;_blank\&quot;&gt;another link&lt;/A&gt;.
+  &lt;/P&gt;
+&lt;/body&gt;
+&lt;/HTML&gt;
+&quot;</span>
+      <span class="ruby-identifier">toke</span> = <span class="ruby-constant">HTMLTokenizer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">page</span>)
+
+      <span class="ruby-identifier">assert</span>(<span class="ruby-value str">&quot;&lt;h1&gt;&quot;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">toke</span>.<span class="ruby-identifier">getTag</span>(<span class="ruby-value str">&quot;h1&quot;</span>, <span class="ruby-value str">&quot;h2&quot;</span>, <span class="ruby-value str">&quot;h3&quot;</span>).<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>)
+      <span class="ruby-identifier">assert</span>(<span class="ruby-constant">HTMLTag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&lt;a href=\&quot;link.html\&quot;&gt;&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">toke</span>.<span class="ruby-identifier">getTag</span>(<span class="ruby-value str">&quot;IMG&quot;</span>, <span class="ruby-value str">&quot;A&quot;</span>))
+      <span class="ruby-identifier">assert</span>(<span class="ruby-value str">&quot;links&quot;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">toke</span>.<span class="ruby-identifier">getTrimmedText</span>)
+      <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">toke</span>.<span class="ruby-identifier">getTag</span>(<span class="ruby-value str">&quot;IMG&quot;</span>, <span class="ruby-value str">&quot;A&quot;</span>).<span class="ruby-identifier">attr_hash</span>[<span class="ruby-value str">'optional'</span>])
+      <span class="ruby-identifier">assert</span>(<span class="ruby-value str">&quot;_blank&quot;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">toke</span>.<span class="ruby-identifier">getTag</span>(<span class="ruby-value str">&quot;IMG&quot;</span>, <span class="ruby-value str">&quot;A&quot;</span>).<span class="ruby-identifier">attr_hash</span>[<span class="ruby-value str">'target'</span>])
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,234 @@
+﻿/*
+	Status-bar-like display for NetNewsWire 2 and 3.
+	John Gruber : <http://daringfireball.net/>
+	v1.2 - Sun 28 Jan 2007
+
+	Released under a Creative Commons Attribution-ShareAlike License:
+	<http://creativecommons.org/licenses/by-sa/2.0/>
+
+	You are free:
+
+	* 	To copy, distribute, display, and perform the work.
+	* 	To make derivative works.
+	* 	To make commercial use of the work.
+
+	Under the following conditions:
+
+	*	Attribution. You must give the original author credit.
+
+	*	Share Alike. If you alter, transform, or build upon this work,
+		you may distribute the resulting work only under a license
+		identical to this one.
+
+	* 	For any reuse or distribution, you must make clear to others
+		the license terms of this work.
+
+	* 	Any of these conditions can be waived if you get permission
+		from the author.
+*/
+
+
+a {
+	padding-bottom: 1px;
+	color: #00a;
+	text-decoration: none;
+	background-color: transparent;
+	}
+a:link {
+	border-bottom: 1px dotted;
+	}
+a:visited {
+	border-bottom: 1px dotted;
+	}
+a:hover {
+	border-bottom: 1px solid
+	}
+a:active {
+	color: white;
+	background-color: transparent;
+	border-color: #779;
+	background: #779;
+	}
+
+body, html {
+	padding: 0;
+	margin: 0;
+	}
+
+.newsItemTitle {
+	font: 12px "Lucida Grande";
+	line-height: 16px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-image: url(status_bar_bg.png);
+	padding: 24px 0 5px 20px;
+	border: 0px solid red;
+	border-bottom: 1px solid #5c5c5c;
+	background-repeat: repeat-x;
+	background-color: #d3d3d3;
+	}
+.newsItemTitle a:link {
+	border-bottom: 1px none;
+	padding-bottom: 0px;
+	}
+.newsItemTitle a:hover {
+	border-bottom: 1px solid;
+	}
+
+.newsItemDescription {
+	margin-top: 60px;
+	margin-left: 20px;
+	max-width: 38em;
+	line-height: 1.7em;
+	}
+
+#combinedViewBody .newsItemDescription {
+	margin-top: 5px;
+	margin-left: 25px;
+	margin-bottom: 2em;
+	}
+
+.newsItemDescription pre {
+	margin-top: 1.5em;
+	margin-bottom: 1.75em;
+	margin-left: 2em;
+	line-height: 1.5em;
+	}
+
+.newsItemDescription blockquote {
+	font-size: 1em;
+	margin: 2em 2em 2em 1em;
+	padding: 0 .75em 0 1.25em;
+	border-left: 1px solid #aaa;
+	border-right: 0;
+	}
+
+.newsItemDescription p {
+ 	margin: 1.5em 0 1.5em 0;
+	}
+.newsItemDescription h1 {
+ 	font-size: 1.2em;
+ 	font-weight: bold;
+	}
+
+.newsItemDescription h2 {
+ 	font-size: 1.0em;
+ 	font-weight: bold;
+	}
+
+.newsItemDescription h3, h4, h5, h6 {
+ 	font-size: .9em;
+ 	font-weight: bold;
+	}
+
+.newsItemDescription ol, ul, dl {
+ 	margin: 0 0 1.6em 0;
+	}
+
+
+
+.newsItemDateLine {
+	margin-left: 0;
+	padding-left: 20px;
+	margin-top: 3em;
+	padding-top: 10px;
+	padding-bottom: 1em;
+	border: 0;
+	color: #777;
+	}
+.newsItemDateLine a {
+	border-style: none;
+	color: #779;
+	}
+
+/**** Source ***************************************/
+span.newsItemSource {
+	font: 11px "Lucida Grande";
+	position: fixed;
+	top: 6px; right: auto; bottom: auto; left: 225px;
+	color: black;
+	background-color: transparent;
+	display: block;
+	}
+span.newsItemSource:before {
+	font-weight: bold;
+	content: "Source: ";
+	}
+span.newsItemSource a:link {
+	color:black;
+	background-color: transparent;
+	}
+span.newsItemSource a:hover {
+	color: #00a;
+	background-color: transparent;
+	border-bottom: 1px solid  #00a;
+	}
+span.newsItemSource a:active {
+	color: white;
+	background-color: transparent;
+	border-color: #779;
+	background: #779;
+	}
+span.newsItemSource img {
+	/* Give the favicon (if present) a slight nudge */
+	position: relative;
+	top: -1px;
+	}
+
+
+/**** Date ***************************************/
+span.newsItemDate {
+	font: 11px "Lucida Grande";
+	position: fixed;
+	top: 6px; right: auto; bottom: auto; left: 20px;
+	color: black;
+	color:black;
+	display: block;
+	}
+span.newsItemDate:before {
+	font-weight: bold;
+	content: "Date: ";
+	}
+
+
+
+span.newsItemCreator {
+	padding-right: 1em;
+	}
+span.newsItemCreator:before {
+	content: "Posted by: ";
+	}
+
+span.newsItemSubject {
+	padding-right: 1em;
+	}
+span.newsItemSubject:before {
+	content: "Category: ";
+	}
+
+span.newsItemCommentsLink{
+	padding-right: 1em;
+	}
+span.newsItemCommentsLink:before {
+	content: "[";
+	}
+span.newsItemCommentsLink:after {
+	content: "]";
+	}
+span.newsItemCommentsLink a {
+	text-decoration: none;
+	border-bottom: 1px dotted;
+	padding-bottom: 1px;
+	color: #77a;
+	}
+span.newsItemCommentsLink a:hover {
+	border-bottom: 1px solid
+	}
+span.newsItemCommentsLink a:active {
+	color: white;
+	background-color: transparent;
+	border-color: #779;
+	background: #779;
+	}

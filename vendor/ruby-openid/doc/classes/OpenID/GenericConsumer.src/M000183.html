@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_id_res (OpenID::GenericConsumer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/consumer.rb, line 514</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_id_res</span>(<span class="ruby-identifier">nonce</span>, <span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">server_id</span>, <span class="ruby-identifier">server_url</span>, <span class="ruby-identifier">query</span>)
+      <span class="ruby-identifier">user_setup_url</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.user_setup_url&quot;</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">user_setup_url</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SetupNeededResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_setup_url</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">return_to</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.return_to&quot;</span>]
+      <span class="ruby-identifier">server_id2</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.identity&quot;</span>]
+      <span class="ruby-identifier">assoc_handle</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.assoc_handle&quot;</span>]
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">return_to</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">'openid.return_to was nil'</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">server_id2</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">'openid.identity was nil'</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">assoc_handle</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">'openid.assoc_handle was nil'</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">server_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">server_id2</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">'server ids do not match'</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">assoc</span> = <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">get_association</span>(<span class="ruby-identifier">server_url</span>, <span class="ruby-identifier">assoc_handle</span>)
+    
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assoc</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-comment cmt"># It's not an association we know about. Dumb mode is our</span>
+        <span class="ruby-comment cmt"># only possible path for recovery.</span>
+        <span class="ruby-identifier">code</span>, <span class="ruby-identifier">msg</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">check_auth</span>(<span class="ruby-identifier">nonce</span>, <span class="ruby-identifier">query</span>, <span class="ruby-identifier">server_url</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SUCCESS</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SuccessResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">query</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-node">&quot;check_auth failed: #{msg}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assoc</span>.<span class="ruby-identifier">expires_in</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
+        <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">log</span>(<span class="ruby-node">&quot;Association with #{server_url} expired&quot;</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'assoc expired'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Check the signature</span>
+      <span class="ruby-identifier">sig</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.sig&quot;</span>]
+      <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'no sig'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sig</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">signed</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.signed&quot;</span>]
+      <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'no signed'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">signed</span>.<span class="ruby-identifier">nil?</span>
+      
+      <span class="ruby-identifier">args</span> = <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">get_openid_params</span>(<span class="ruby-identifier">query</span>)
+      <span class="ruby-identifier">signed_list</span> = <span class="ruby-identifier">signed</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+      <span class="ruby-identifier">_signed</span>, <span class="ruby-identifier">v_sig</span> = <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">sign_reply</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">assoc</span>.<span class="ruby-identifier">secret</span>, <span class="ruby-identifier">signed_list</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">v_sig</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">sig</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'sig mismatch'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@store</span>.<span class="ruby-identifier">use_nonce</span>(<span class="ruby-identifier">nonce</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'nonce already used'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SuccessResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">query</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

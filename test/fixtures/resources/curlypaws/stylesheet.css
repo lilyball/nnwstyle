@@ -1,0 +1,75 @@
+/*
+	Curlypaws stylesheet for NetNewsWire 2.
+	Primarily intended for Widescreen and Traditional views
+		v1.1 - Mon 24 Jan 2005
+	
+	Headline links show as red without underlining as standard,
+	but will show a dotted underline when in hover state.
+	
+	The font is slightly larger to cater for those using
+	larger screens.	
+	
+*/
+
+p, li, span {
+	color: #333333;
+}
+li {
+	margin-bottom: 3px;
+}
+body {
+	background: #ffffff url('ct.png') left bottom fixed no-repeat;
+	font-family: 'Lucida Bright', serif;
+	font-size: 14px;
+}
+.newsItemTitle {
+	margin: 0 0 20px 0;
+	border: 0;
+	padding-top: 20px;
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: normal;
+	border-top: 1px #dddddd solid;
+}
+.newsItemTitle a:link {
+	text-decoration: none;
+	color: #660000;
+}
+.newsItemTitle a:hover, a:active {
+	text-decoration: underline;
+}
+.newsItemContainer {
+	height: 95%;
+	margin: 25px 25px 25px 150px;
+	border: 0;
+	padding: 0;
+}
+.newsItemDescription a:link {
+	text-decoration: none;
+	color: #0076E9;
+}
+.newsItemDescription a:hover {
+	text-decoration: underline;
+}
+.newsItemDescription {
+	margin: 0 0 10px 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 0;
+	padding: 0;
+	font-size: 14px;
+}
+.newsItemDateLine {
+	margin: 0 0 20px 0;
+	border: 0;
+	padding: 0;
+	font-size: 12px;
+	font-weight: bold;
+	border-top: 1px #dddddd solid;
+	padding-top: 5px;
+	clear: both;
+}
+a:link, a:visited {text-decoration: dotted; color: #00F;}
+div.newsItemDateLine img {margin-right: 0.5em;}
+div.newsItemDateLine span:before {content: "\2022 "; margin: 0 0.5em; color: #666;}
+div.newsItemDateLine span.newsItemSource:before {content: ""; margin-left: 0;}

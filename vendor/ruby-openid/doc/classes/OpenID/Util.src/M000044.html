@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rand (OpenID::Util)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/util.rb, line 208</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Util</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">max</span>)
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-constant">HAS_URANDOM</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Kernel</span><span class="ruby-operator">::</span><span class="ruby-identifier">rand</span>(<span class="ruby-identifier">max</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">start</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">stop</span> = <span class="ruby-identifier">max</span>
+      <span class="ruby-identifier">step</span> = <span class="ruby-value">1</span>
+      <span class="ruby-identifier">r</span> = ((<span class="ruby-identifier">stop</span><span class="ruby-operator">-</span><span class="ruby-identifier">start</span>)<span class="ruby-operator">/</span><span class="ruby-identifier">step</span>).<span class="ruby-identifier">to_i</span>
+
+      <span class="ruby-comment cmt"># figure out how many bytes we need</span>
+      <span class="ruby-identifier">rbytes</span> = <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">num_to_str</span>(<span class="ruby-identifier">r</span>)
+      <span class="ruby-identifier">nbytes</span> = <span class="ruby-identifier">rbytes</span>.<span class="ruby-identifier">length</span>
+      <span class="ruby-identifier">nbytes</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rbytes</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;\000&quot;</span>
+            
+      <span class="ruby-identifier">bytes</span> = <span class="ruby-value str">&quot;\000&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">get_random_bytes</span>(<span class="ruby-identifier">nbytes</span>)
+      <span class="ruby-identifier">n</span> = <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">str_to_num</span>(<span class="ruby-identifier">bytes</span>)
+      
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">start</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">r</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">step</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

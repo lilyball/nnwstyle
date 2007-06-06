@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>complete (OpenID::GenericConsumer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/consumer.rb, line 478</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">complete</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">service_endpoint</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-value str">'no session state found'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">service_endpoint</span>
+
+      <span class="ruby-identifier">consumer_id</span> = <span class="ruby-identifier">service_endpoint</span>.<span class="ruby-identifier">consumer_id</span>
+      <span class="ruby-identifier">server_id</span> = <span class="ruby-identifier">service_endpoint</span>.<span class="ruby-identifier">server_id</span>
+      <span class="ruby-identifier">server_url</span> = <span class="ruby-identifier">service_endpoint</span>.<span class="ruby-identifier">server_url</span>
+
+      <span class="ruby-comment cmt"># get the nonce out of the query</span>
+      <span class="ruby-identifier">nonce</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">'nonce'</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nonce</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>, <span class="ruby-value str">'could not extract nonce'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">mode</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.mode&quot;</span>]
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mode</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;cancel&quot;</span>        
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CancelResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer_id</span>)
+
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;error&quot;</span>
+        <span class="ruby-identifier">error</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">&quot;openid.error&quot;</span>]
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">error</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">log</span>(<span class="ruby-value str">'Error: '</span><span class="ruby-operator">+</span><span class="ruby-identifier">error</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-identifier">error</span>)
+
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;id_res&quot;</span>        
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">do_id_res</span>(<span class="ruby-identifier">nonce</span>, <span class="ruby-identifier">consumer_id</span>, <span class="ruby-identifier">server_id</span>, <span class="ruby-identifier">server_url</span>, <span class="ruby-identifier">query</span>)
+
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FailureResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-node">&quot;unknown mode #{mode}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

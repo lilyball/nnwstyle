@@ -1,0 +1,11 @@
+<div class="comment">
+  <span class="comment-author" title="<%= h(comment.user.openid_url) %>"><%= link_to_unless comment.user.homepage.blank?, h(comment.user.name), comment.user.homepage, :rel => "nofollow" %></span>
+  <span class="comment-timestamp"><%= distance_of_time_in_words_to_now comment.created_at %> ago</span>
+  <%- unless comment.rating.nil? -%>
+  <span class="comment-rating"><%= "★" * comment.rating %></span>
+  <%- end -%>
+  <span class="comment-version">v<%= comment.version %></span>
+  <div class="comment-body">
+    <%= textilize(comment.body) %>
+  </div>
+</div>

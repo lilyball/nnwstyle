@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>discover (OpenID::OpenIDDiscovery)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/discovery.rb, line 38</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">discover</span>(<span class="ruby-identifier">filter</span>=<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">filter</span>
+        <span class="ruby-identifier">filter</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">OpenIDServiceEndpoint</span>.<span class="ruby-identifier">from_endpoint</span>(<span class="ruby-identifier">s</span>)}
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-comment cmt"># do yadis discover, filtering out OpenID services</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">filter</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">YADISParseError</span>, <span class="ruby-constant">YADISHTTPError</span>
+
+        <span class="ruby-comment cmt"># Couldn't do Yadis discovery, fall back on OpenID 1.0 disco</span>
+        <span class="ruby-identifier">status</span>, <span class="ruby-identifier">service</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">openid_discovery</span>(<span class="ruby-ivar">@url</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SUCCESS</span>
+          <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">service</span>.<span class="ruby-identifier">consumer_id</span>, [<span class="ruby-identifier">service</span>]]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">return</span> [<span class="ruby-keyword kw">nil</span>, []]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

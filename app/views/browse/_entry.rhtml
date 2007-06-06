@@ -1,0 +1,7 @@
+<div class="stylesheet-row">
+  <img class="thumbnail" src="<%= thumbnail_url :id => entry %>" alt="thumbnail" />
+  <div class="date"><%= distance_of_time_in_words_to_now(entry.version_updated_at) %> ago</div>
+  <div class="title"><%= link_to h(entry.name), show_path(:id => entry) %></div>
+  <p><%=h entry.description %></p>
+  <div class="author">By <%= link_to h(entry.user.name), :controller => 'user', :action => 'show', :id => entry.user %></div>
+</div>

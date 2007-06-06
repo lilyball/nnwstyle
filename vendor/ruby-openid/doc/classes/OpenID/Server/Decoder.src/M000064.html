@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>decode (OpenID::Server::Decoder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/server.rb, line 766</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decode</span>(<span class="ruby-identifier">query</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        
+        <span class="ruby-identifier">mode</span> = <span class="ruby-identifier">query</span>[<span class="ruby-value str">'openid.mode'</span>]
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">nil?</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Array</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">'query hash must have one value for each key'</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mode</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'checkid_setup'</span>, <span class="ruby-value str">'checkid_immediate'</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CheckIDRequest</span>.<span class="ruby-identifier">from_query</span>(<span class="ruby-identifier">query</span>)
+
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'check_authentication'</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CheckAuthRequest</span>.<span class="ruby-identifier">from_query</span>(<span class="ruby-identifier">query</span>)
+
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'associate'</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">AssociateRequest</span>.<span class="ruby-identifier">from_query</span>(<span class="ruby-identifier">query</span>)
+          
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProtocolError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">query</span>, <span class="ruby-node">&quot;Unknown mode #{mode}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

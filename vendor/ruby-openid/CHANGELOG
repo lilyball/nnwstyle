@@ -1,0 +1,79 @@
+Thu Jan  4 11:08:54 PST 2007  brian@janrain.com
+  * add license to file, bump up yadis dep
+
+    M ./admin/build-docs -1 +1
+    M ./gemspec -2 +2
+
+Thu Jan  4 10:59:11 PST 2007  brian@janrain.com
+  * remove TODO
+
+    M ./admin/build-docs -1 +1
+    M ./gemspec -1 +1
+
+Thu Jan  4 10:52:53 PST 2007  brian@janrain.com
+  tagged 1.1.4
+
+
+Thu Jan  4 10:38:03 PST 2007  brian@janrain.com
+  * reword some text in examples/README
+
+    M ./examples/README -1 +1
+
+Thu Jan  4 10:35:44 PST 2007  brian@janrain.com
+  * remove @session and @params iv accessors from generator
+
+    M ./examples/rails_openid_login_generator/gemspec -2 +2
+    M ./examples/rails_openid_login_generator/templates/README -5 +5
+    M ./examples/rails_openid_login_generator/templates/controller.rb -9 +11
+    M ./examples/rails_openid_login_generator/templates/openid_login_system.rb -5 +5
+
+Wed Jan  3 18:27:59 PST 2007  brian@janrain.com
+  * license and readme updates
+
+    M ./COPYING -18 +11
+    A ./LICENSE
+    M ./README -4 +3
+    R ./TODO
+    M ./examples/rails_server/config/environment.rb +2
+
+Wed Jan  3 18:10:42 PST 2007  brian@janrain.com
+  * fixed old string interpolation bug
+
+    M ./lib/openid/consumer.rb -1 +1
+
+Fri Dec 15 15:12:20 PST 2006  brian@janrain.com
+  * Make urlencode not crash on nil values. use empty string instead.
+
+    M ./lib/openid/util.rb +1
+
+Fri Dec 15 15:11:03 PST 2006  brian@janrain.com
+  * replace rails_active_record_store with active_record_store rails plugin
+
+    M ./examples/README -3 +3
+    A ./examples/active_record_openid_store/
+    A ./examples/active_record_openid_store/README
+    A ./examples/active_record_openid_store/XXX_add_open_id_store_to_db.rb
+    A ./examples/active_record_openid_store/init.rb
+    A ./examples/active_record_openid_store/lib/
+    A ./examples/active_record_openid_store/lib/association.rb
+    A ./examples/active_record_openid_store/lib/nonce.rb
+    A ./examples/active_record_openid_store/lib/open_id_setting.rb
+    A ./examples/active_record_openid_store/lib/openid_ar_store.rb
+    A ./examples/active_record_openid_store/test/
+    A ./examples/active_record_openid_store/test/store_test.rb
+    R ./examples/rails_active_record_store/
+    R ./examples/rails_active_record_store/README
+    R ./examples/rails_active_record_store/XX_add_openidstore.rb
+    R ./examples/rails_active_record_store/models/
+    R ./examples/rails_active_record_store/models/openid_association.rb
+    R ./examples/rails_active_record_store/models/openid_nonce.rb
+    R ./examples/rails_active_record_store/models/openid_setting.rb
+    R ./examples/rails_active_record_store/openid_helper.rb
+    R ./examples/rails_active_record_store/openidstore_test.rb
+    R ./examples/rails_active_record_store/schema.mysql.sql
+    R ./examples/rails_active_record_store/schema.postgresql.sql
+    R ./examples/rails_active_record_store/schema.sqlite.sql
+
+Wed Sep 20 15:01:11 PDT 2006  brian@janrain.com
+  tagged 1.1.3
+

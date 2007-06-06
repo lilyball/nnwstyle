@@ -1,0 +1,196 @@
+.thumbnail {
+    display: block;
+    float: left;
+    margin: 6px;
+    margin-right: 12px;
+    width: 64px;
+    height: 64px;
+}
+
+.stylesheet-row {
+    clear: both;
+    border: 1px solid grey;
+    margin: 4px 2px;
+    width: 60%;
+    min-height: 76px;
+}
+
+.stylesheet-row > .title, .stylesheet-row > .author {
+    margin: 4px;
+}
+
+.stylesheet-row > .date {
+    float: right;
+    border: 1px solid grey;
+    margin: -1px -1px 0 0;
+    padding: 1px 3px;
+    background: lightgreen;
+}
+
+#stylesheet-header {
+    text-align: center;
+}
+
+#stylesheet-version {
+    color: grey;
+    margin-left: 1em;
+    font-size: small;
+}
+
+#byline {
+    display: block;
+}
+
+#preview {
+    width: 650px;
+    height: 250px;
+    display: block;
+    margin: 20px auto;
+    border: 1px solid black;
+}
+
+#description {
+    text-align: center;
+}
+
+#downloads {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#downloads span {
+    padding: 5px 10px;
+    background: #B5F386;
+    border: 1px dashed green;
+}
+
+/*#downloads a { color: #000; }*/
+/*#downloads a:visited { color: #666; }*/
+
+#comments {
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid grey;
+}
+
+#comments > h2 {
+    margin: 15px 30px;
+}
+
+.comment {
+    border: 1px solid grey;
+    margin: 10px auto;
+    width: 500px;
+    padding: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-body {
+}
+
+.comment-timestamp {
+    font-size: smaller;
+    color: grey;
+    margin-left: 0.5em;
+}
+
+.comment-rating {
+    font-family: AppleGothic;
+    margin-left: 0.5em;
+}
+
+.comment-version {
+    display: block;
+    float: right;
+    font-size: smaller;
+    color: grey;
+    margin-top: -10px;
+    margin-right: -5px;
+}
+
+#comments-form label {
+    vertical-align: top;
+    display: block;
+    float: left;
+    width: 71px;
+    text-align: right;
+    margin-right: 6px;
+}
+
+#comment_body, #label_comment_body {
+    margin-top: 8px;
+}
+
+#comment_body {
+    height: 100px;
+}
+
+#comment_body, #comment_subject {
+    width: 350px;
+}
+
+#comments-form {;
+    border: 1px solid grey;
+    margin: 20px auto;
+    width: 500px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#comments-form span {
+    display: block;
+    margin: 0 0 10px 75px;
+}
+
+#comments-form input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: 75px;
+    margin-top: 10px;
+}
+
+#comments-login {
+    margin: 15px;
+    text-align: center;
+}
+
+#errorExplanation {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Uploading */
+
+#stylesheet-upload {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#stylesheet-upload label {
+    vertical-align: top;
+    display: block;
+    float: left;
+    width: 80px;
+    text-align: right;
+    margin-right: 6px;
+}
+
+#stylesheet-upload * {
+    margin-top: 8px;
+}
+
+#stylesheet-upload input, #stylesheet-upload textarea {
+    width: 350px;
+}
+
+#stylesheet-upload input[type="submit"] {
+    display: block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}

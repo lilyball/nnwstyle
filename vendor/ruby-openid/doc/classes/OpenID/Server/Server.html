@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: OpenID::Server::Server</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">OpenID::Server::Server</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/openid/server_rb.html">
+                lib/openid/server.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Top level object that handles incoming requests for an <a
+href="../../OpenID.html">OpenID</a> server.
+</p>
+<p>
+Some types of requests (those which are not <a
+href="CheckIDRequest.html">CheckIDRequest</a> objects) may be handed to the
+<a href="Server.html#M000080">handle_request</a> method, and an appropriate
+response will be returned.
+</p>
+<p>
+For convenienve, decode and encode methods are exposed which should be used
+as the entry and exit points of the <a href="../../OpenID.html">OpenID</a>
+server logic. The first step when handling an <a
+href="../../OpenID.html">OpenID</a> server action should be to call <a
+href="Server.html#M000079">Server.decode_request</a> with the query
+arguments.
+</p>
+<p>
+This object needs an instance of <a href="../Store.html">OpenID::Store</a>
+to store state between sessions and associations. See <a
+href="../FilesystemStore.html">OpenID::FilesystemStore</a> for a simple
+file based solution.
+</p>
+<h2>Pseudo Code</h2>
+<p>
+Below is some pseudo code for using this object to handle <a
+href="../../OpenID.html">OpenID</a> server requests. The <tt>params</tt>
+variable represents a Hash of the incoming arguments. is_authorized and
+show_decide_page are methods you provide. At the end you have a <a
+href="WebResponse.html">WebResponse</a> object suitable for examining and
+issuing a response to your web server.
+</p>
+<pre>
+  include OpenID
+  store = FilesystemStore.new('/var/openid/store')
+  server = Server::Server.new(store)
+  request = server.decode_request(params)
+  if request.kind_of?(CheckIDRequest)
+    if is_authorized(request.identity, request.trust_root)
+      response = request.answer(true)
+    elsif request.immediate
+      response = request.answer(false,'http://example.com/openid-server')
+    else
+      show_decide_page(request)
+      return
+    end
+  else
+    response = server.handle_request(request)
+  end
+
+  web_response = server.encode_response(response)
+</pre>
+<p>
+For an actual working example, please see the rails_server directory inside
+of the examples directory. Have a look at the
+app/controllers/server_controller.rb and the <tt>index</tt> method of the
+ServerController object.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000079">decode_request</a>&nbsp;&nbsp;
+      <a href="#M000081">encode_response</a>&nbsp;&nbsp;
+      <a href="#M000080">handle_request</a>&nbsp;&nbsp;
+      <a href="#M000078">new</a>&nbsp;&nbsp;
+      <a href="#M000083">openid_associate</a>&nbsp;&nbsp;
+      <a href="#M000082">openid_check_authentication</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000078.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000078.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(store)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<tt>store</tt> is a kind of <a href="../Store.html">OpenID::Store</a>
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000079.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000079.html');return false;">
+          <span class="method-name">decode_request</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decode an incoming web request into a kind of <a
+href="OpenIDRequest.html">OpenIDRequest</a> object. <tt>query</tt> should
+be a hash of request arguments. Rails users will want to pass in the
+@params instance variable of the ActionController.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000081" class="method-detail">
+        <a name="M000081"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000081.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000081.html');return false;">
+          <span class="method-name">encode_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a <a href="WebResponse.html">WebResponse</a> object given an <a
+href="OpenIDResponse.html">OpenIDResponse</a> object
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000080" class="method-detail">
+        <a name="M000080"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000080.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000080.html');return false;">
+          <span class="method-name">handle_request</span><span class="method-args">(request)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Handle all non checkid_* <a href="../../OpenID.html">OpenID</a> requests.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000083" class="method-detail">
+        <a name="M000083"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000083.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000083.html');return false;">
+          <span class="method-name">openid_associate</span><span class="method-args">(request)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+called by <a href="Server.html#M000080">handle_request</a> to perform
+openid.mode=associate calls.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000082" class="method-detail">
+        <a name="M000082"></a>
+
+        <div class="method-heading">
+          <a href="Server.src/M000082.html" target="Code" class="method-signature"
+            onclick="popupCode('Server.src/M000082.html');return false;">
+          <span class="method-name">openid_check_authentication</span><span class="method-args">(request)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+called by <a href="Server.html#M000080">handle_request</a> to perform check
+auth calls
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

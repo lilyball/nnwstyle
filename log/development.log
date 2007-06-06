@@ -1,0 +1,113 @@
+# Logfile created on Tue Jun 05 22:36:38 -0700 2007 by /
+
+
+Processing BrowseController#index (for 127.0.0.1 at 2007-06-05 22:36:43) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"action"=>"index", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.032854)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mSQL (0.085865)[0m   [0mSELECT count(DISTINCT stylesheets.id) AS count_all FROM stylesheets LEFT OUTER JOIN users ON users.id = stylesheets.user_id [0m
+  [4;36;1mUser Columns (0.002292)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mStylesheet Load Including Associations (0.003141)[0m   [0mSELECT stylesheets.`id` AS t0_r0, stylesheets.`name` AS t0_r1, stylesheets.`description` AS t0_r2, stylesheets.`version` AS t0_r3, stylesheets.`user_id` AS t0_r4, stylesheets.`created_at` AS t0_r5, stylesheets.`version_updated_at` AS t0_r6, users.`id` AS t1_r0, users.`openid_url` AS t1_r1, users.`nickname` AS t1_r2, users.`fullname` AS t1_r3, users.`uses_full_name` AS t1_r4, users.`homepage` AS t1_r5 FROM stylesheets LEFT OUTER JOIN users ON users.id = stylesheets.user_id ORDER BY version_updated_at DESC LIMIT 0, 10[0m
+Rendering  within layouts/default
+Rendering browse/index
+Rendered browse/_entry (0.00483)
+Rendered browse/_entry (0.00096)
+Rendered browse/_entry (0.00081)
+Rendered browse/_entry (0.00081)
+Rendered browse/_entry (0.00077)
+Rendered browse/_entry (0.00074)
+Rendered browse/_entry (0.00090)
+Rendered browse/_entry (0.00074)
+Rendered browse/_entry (0.00073)
+Completed in 0.22146 (4 reqs/sec) | Rendering: 0.01731 (7%) | DB: 0.12415 (56%) | 200 OK [http://localhost/]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:44) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"1-feedlight-graphite", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.010158)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001758)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 1) [0m
+  [4;36;1mResource Columns (0.089305)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.004364)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 1) LIMIT 1[0m
+Completed in 0.16335 (6 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.10558 (64%) | 404 Not Found [http://localhost/browse/thumbnail/1-feedlight-graphite]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:44) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"6-feedlight-aqua", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.002818)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001589)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 6) [0m
+  [4;36;1mResource Columns (0.043303)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.001233)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 6) LIMIT 1[0m
+Completed in 0.07105 (14 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.04894 (68%) | 404 Not Found [http://localhost/browse/thumbnail/6-feedlight-aqua]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:44) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"9-spotlight-wrap", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.006052)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001565)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 9) [0m
+  [4;36;1mResource Columns (0.002232)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002117)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 9) LIMIT 1[0m
+Completed in 0.03383 (29 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.01197 (35%) | 404 Not Found [http://localhost/browse/thumbnail/9-spotlight-wrap]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:45) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"8-curlypaws", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.002228)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001507)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 8) [0m
+  [4;36;1mResource Columns (0.002205)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002173)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 8) LIMIT 1[0m
+Completed in 0.03099 (32 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.00811 (26%) | 404 Not Found [http://localhost/browse/thumbnail/8-curlypaws]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:45) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"3-default", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.015201)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001501)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 3) [0m
+  [4;36;1mResource Columns (0.046944)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002179)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 3) LIMIT 1[0m
+Completed in 0.09938 (10 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.06582 (66%) | 404 Not Found [http://localhost/browse/thumbnail/3-default]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:45) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"5-bd-graphit-floating", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.003750)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001508)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 5) [0m
+  [4;36;1mResource Columns (0.003017)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002354)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 5) LIMIT 1[0m
+Completed in 0.03128 (31 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.01063 (33%) | 404 Not Found [http://localhost/browse/thumbnail/5-bd-graphit-floating]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:45) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"2-bd-aqua-floating", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.004551)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.001905)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 2) [0m
+  [4;36;1mResource Columns (0.002188)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002162)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 2) LIMIT 1[0m
+Completed in 0.03056 (32 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.01081 (35%) | 404 Not Found [http://localhost/browse/thumbnail/2-bd-aqua-floating]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:46) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"4-gray-lady", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.002320)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.002330)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 4) [0m
+  [4;36;1mResource Columns (0.003454)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.002098)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 4) LIMIT 1[0m
+Completed in 0.02983 (33 reqs/sec) | Rendering: 0.00008 (0%) | DB: 0.01020 (34%) | 404 Not Found [http://localhost/browse/thumbnail/4-gray-lady]
+
+
+Processing BrowseController#resource (for 127.0.0.1 at 2007-06-05 22:36:46) [GET]
+  Session ID: 77b9e5b47385ea1011db6338721348ba
+  Parameters: {"name"=>"thumbnail", "action"=>"resource", "id"=>"7-daring-gradient-bar", "controller"=>"browse"}
+  [4;36;1mStylesheet Columns (0.002581)[0m   [0;1mSHOW FIELDS FROM stylesheets[0m
+  [4;35;1mStylesheet Load (0.000785)[0m   [0mSELECT * FROM stylesheets WHERE (stylesheets.id = 7) [0m
+  [4;36;1mResource Columns (0.009740)[0m   [0;1mSHOW FIELDS FROM resources[0m
+  [4;35;1mResource Load (0.003427)[0m   [0mSELECT * FROM resources WHERE (resources.`name` = 'thumbnail' AND resources.`stylesheet_id` = 7) LIMIT 1[0m
+Sending data 
+Completed in 0.14336 (6 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.01653 (11%) | 200 OK [http://localhost/browse/thumbnail/7-daring-gradient-bar]

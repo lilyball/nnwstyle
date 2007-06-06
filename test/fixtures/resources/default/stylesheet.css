@@ -1,0 +1,93 @@
+a {
+	text-decoration: none;
+	}
+a:hover {
+	color: red;
+	}
+body {
+	padding: 0px;
+	margin: 0px;
+    }
+.newsItemTitle {
+	font-size: 1.25em;
+	padding-top: 8px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	padding-right: 5px;
+	background-color: #F0F0F0;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 1px;
+	border-color: #BDBDBD;
+	border-style: solid;
+	text-shadow: white 1px 1px 1px;
+	}
+.newsItemDescription {
+	line-height: 1.5em;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 2px;
+	padding-bottom: 10px;
+	margin-top: 2px;
+	color: #101010;
+	background-color: white;
+	}
+.newsItemDescription img {
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	}
+.newsItemDateLine {
+	margin-top: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 20px;
+	padding-right: 5px;
+	}
+.newsItemDateLine span {
+	color: #666666;
+	}
+span.newsItemSource:after {
+	content: " - ";
+	}
+span.newsItemCreator:before {
+	content: "Posted by ";
+	}
+span.newsItemSubject:before {
+	content: "in ";
+	}
+span.newsItemEnclosure:before {
+	content: " Enclosure: ";
+	}
+span.newsItemCommentsLink:before {
+	content: "- ";
+	}
+
+/*Combined View...*/
+
+#combinedViewBody .newsItemContainer {
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 1px;
+	border-color: white;
+	border-style: solid;
+	margin-bottom: 20px;
+	}
+#combinedViewBody .newsItemTitle {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-bottom: 0px;
+	font-size: 1.0em;
+	}
+#combinedViewBody .newsItemDescription {
+	padding-left: 8px;
+	padding-right: 14px;
+	text-align: justify;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	}

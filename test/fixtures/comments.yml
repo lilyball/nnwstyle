@@ -1,0 +1,18 @@
+one:
+    body: This is a __neat__ comment!
+    rating: 5
+    version: 3.0
+    stylesheet_id: <%= daringgradient.id %>
+    user_id: <%= ranchero.id %>
+
+two:
+    body: A lame-o comment
+    version: 2.5
+    stylesheet_id: <%= daringgradient.id %>
+    user_id: <%= gruber.id %>
+
+three:
+    body: I love the blue
+    version: 1.0
+    stylesheet_id: <%= feedlight_aqua.id %>
+    user_id: <%= wolf.id %>

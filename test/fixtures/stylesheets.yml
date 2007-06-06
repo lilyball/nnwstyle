@@ -1,0 +1,73 @@
+<% now = Time.now %>
+---
+default:
+    user_id: <%= ranchero.id %>
+    name: Default
+    description: The default stylesheet
+    version: 1.0
+    created_at: <%= now - 1.week %>
+    version_updated_at: <%= now - 1.week %>
+
+graylady:
+    user_id: <%= noah.id %>
+    name: Gray Lady
+    description: The Gray Lady stylesheet
+    version: 1.0
+    created_at: <%= now - 6.days %>
+    version_updated_at: <%= now - 6.days %>
+
+daringgradient:
+    user_id: <%= gruber.id %>
+    name: Daring Gradient Bar
+    description: A nice style by John Gruber
+    version: 3.0
+    created_at: <%= now - 6.5.days %>
+    version_updated_at: <%= now - 2.days %>
+
+bdaqua:
+    user_id: <%= bartelme.id %>
+    name: BD Aqua Floating
+    description: A good style by Wolfgang Bartelme
+    version: 1.0
+    created_at: <%= now - 5.days %>
+    version_updated_at: <%= now - 3.days %>
+
+bdgraphit:
+    user_id: <%= bartelme.id %>
+    name: BD Graphit Floating
+    description: Another style by Wolfgang Bartelme
+    version: 1.0
+    created_at: <%= now - 4.9.days %>
+    version_updated_at: <%= now - 2.5.days %>
+
+curlypaws:
+    user_id: <%= karen.id %>
+    name: Curlypaws
+    description: A cudly stylesheet
+    version: 2.0
+    created_at: <%= now - 1.day %>
+    version_updated_at: <%= now - 0.5.days %>
+
+spotlight_wrap:
+    user_id: <%= wolf.id %>
+    name: Spotlight+wrap
+    description: A wrapping version of Spotlight
+    version: 2.0
+    created_at: <%= now %>
+    version_updated_at: <%= now %>
+
+feedlight_aqua:
+    user_id: <%= brokenlogic.id %>
+    name: FeedLight Aqua
+    description: A pretty aqua-licious style
+    version: 1.0
+    created_at: <%= now %>
+    version_updated_at: <%= now %>
+
+feedlight_graphite:
+    user_id: <%= brokenlogic.id %>
+    name: FeedLight Graphite
+    description: A pretty graphite style
+    version: 1.0
+    created_at: <%= now %>
+    version_updated_at: <%= now %>

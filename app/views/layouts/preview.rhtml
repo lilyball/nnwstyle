@@ -1,0 +1,24 @@
+<html>
+  <head>
+  <style type="text/css">
+ins.diff {text-decoration: none; color: green}
+del.diff {color: red}
+  </style>
+  <style type="text/css" media="screen">
+html {
+  font-size: 11px Verdana;
+}
+pre {
+  font: 10px Monaco;
+}
+  </style>
+  <style type="text/css" media="screen">
+@import "<%= resource_url :name => @stylesheet.css.name, :only_path => false %>";
+  </style>
+  <title>News Item Preview</title>
+</head>
+<body id="traditionalViewBody" class="completeNewsItem">
+
+<%= yield %>
+
+</body></html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>redirect_url (OpenID::SuccessRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/consumer.rb, line 772</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">redirect_url</span>(<span class="ruby-identifier">trust_root</span>, <span class="ruby-identifier">return_to</span>, <span class="ruby-identifier">immediate</span>=<span class="ruby-keyword kw">false</span>)
+      <span class="ruby-comment cmt"># add the nonce into the return_to url</span>
+      <span class="ruby-identifier">return_to</span> = <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">append_args</span>(<span class="ruby-identifier">return_to</span>, <span class="ruby-ivar">@return_to_args</span>)
+
+      <span class="ruby-identifier">redir_args</span> = {
+        <span class="ruby-value str">&quot;openid.identity&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@server_id</span>,
+        <span class="ruby-value str">&quot;openid.return_to&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">return_to</span>,
+        <span class="ruby-value str">&quot;openid.trust_root&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">trust_root</span>,
+        <span class="ruby-value str">&quot;openid.mode&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">immediate</span> <span class="ruby-value">? </span><span class="ruby-value str">'checkid_immediate'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">'checkid_setup'</span>
+      }
+
+      <span class="ruby-identifier">redir_args</span>[<span class="ruby-value str">&quot;openid.assoc_handle&quot;</span>] = <span class="ruby-ivar">@assoc</span>.<span class="ruby-identifier">handle</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@assoc</span>
+      <span class="ruby-identifier">redir_args</span>.<span class="ruby-identifier">update</span>(<span class="ruby-ivar">@extra_args</span>)
+     
+      <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenID</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span>.<span class="ruby-identifier">append_args</span>(<span class="ruby-identifier">server_url</span>, <span class="ruby-identifier">redir_args</span>).<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

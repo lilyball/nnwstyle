@@ -1,0 +1,330 @@
+<% now = Time.now %>
+
+default_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'default/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= default.id %>
+    updated_at: <%= now - 1.week %>
+
+graylady_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'graylady/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= graylady.id %>
+    updated_at: <%= now - 6.days %>
+
+graylady_template:
+    name: template.html
+    data: <%= bindata 'graylady/template.html' %>
+    mimeType: text/html
+    stylesheet_id: <%= graylady.id %>
+    updated_at: <%= now - 6.days %>
+
+daringgradient_thumbnail:
+    name: thumbnail
+    data: <%= bindata 'daringgradient/thumbnail.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= daringgradient.id %>
+    updated_at: <%= now - 2.days %>
+
+daringgradient_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'daringgradient/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= daringgradient.id %>
+    updated_at: <%= now - 2.days %>
+
+bdaqua_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'bdaqua/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= bdaqua.id %>
+    updated_at: <%= now - 3.days%>
+
+bdaqua_template:
+    name: template.html
+    data: <%= bindata 'bdaqua/template.html' %>
+    mimeType: text/html
+    stylesheet_id: <%= bdaqua.id %>
+    updated_at: <%= now - 5.days %>
+
+bdgraphit_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'bdgraphit/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= bdgraphit.id %>
+    updated_at: <%= now - 2.5.days %>
+
+bdgraphit_template:
+    name: template.html
+    data: <%= bindata 'bdgraphit/template.html' %>
+    mimeType: text/html
+    stylesheet_id: <%= bdgraphit.id %>
+    updated_at: <%= now - 4.9.days %>
+
+curlypaws_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'curlypaws/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= curlypaws.id %>
+    updated_at: <%= now - 0.5.days %>
+
+bdaqua_bg_header:
+    name: bg_header.png
+    data: <%= bindata 'bdaqua/bg_header.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdaqua.id %>
+    updated_at: <%= now %>
+
+bdaqua_bg_info:
+    name: bg_info.png
+    data: <%= bindata 'bdaqua/bg_info.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdaqua.id %>
+    updated_at: <%= now %>
+
+bdaqua_bg_visited:
+    name: bg_visited.png
+    data: <%= bindata 'bdaqua/bg_visited.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdaqua.id %>
+    updated_at: <%= now %>
+
+bdgraphit_bg_header:
+    name: bg_header.png
+    data: <%= bindata 'bdgraphit/bg_header.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdgraphit.id %>
+    updated_at: <%= now %>
+
+bdgraphit_bg_info:
+    name: bg_info.png
+    data: <%= bindata 'bdgraphit/bg_info.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdgraphit.id %>
+    updated_at: <%= now %>
+
+bdgraphit_bg_visited:
+    name: bg_visited.png
+    data: <%= bindata 'bdgraphit/bg_visited.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= bdgraphit.id %>
+    updated_at: <%= now %>
+
+curlypaws_ct:
+    name: ct.png
+    data: <%= bindata 'curlypaws/ct.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= curlypaws.id %>
+    updated_at: <%= now %>
+
+daringgradient_status_bar_bg:
+    name: status_bar_bg.png
+    data: <%= bindata 'daringgradient/status_bar_bg.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= daringgradient.id %>
+    updated_at: <%= now %>
+
+daringgradient_thumbnail_png:
+    name: thumbnail.png
+    data: <%= bindata 'daringgradient/thumbnail.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= daringgradient.id %>
+    updated_at: <%= now %>
+
+spotlight_wrap_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'spotlight+wrap/stylesheet.css' %>
+    mimeType: text/css
+    stylesheet_id: <%= spotlight_wrap.id %>
+    updated_at: <%= now %>
+
+spotlight_wrap_title_png:
+    name: title.png
+    data: <%= bindata 'spotlight+wrap/title.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= spotlight_wrap.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_aqua_hover_gif:
+    name: aqua-hover.gif
+    data: <%= bindata 'feedlight_aqua/aqua-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_aqua_gif:
+    name: aqua.gif
+    data: <%= bindata 'feedlight_aqua/aqua.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_fade_png:
+    name: fade.png
+    data: <%= bindata 'feedlight_aqua/fade.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_grid_gif:
+    name: grid.gif
+    data: <%= bindata 'feedlight_aqua/grid.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_author_gif:
+    name: icon-author.gif
+    data: <%= bindata 'feedlight_aqua/icon-author.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_calendar_gif:
+    name: icon-calendar.gif
+    data: <%= bindata 'feedlight_aqua/icon-calendar.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_comment_hover_gif:
+    name: icon-comment-hover.gif
+    data: <%= bindata 'feedlight_aqua/icon-comment-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_comment_gif:
+    name: icon-comment.gif
+    data: <%= bindata 'feedlight_aqua/icon-comment.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_feed_hover_gif:
+    name: icon-feed-hover.gif
+    data: <%= bindata 'feedlight_aqua/icon-feed-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_feed_gif:
+    name: icon-feed.gif
+    data: <%= bindata 'feedlight_aqua/icon-feed.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_icon_folder_gif:
+    name: icon-folder.gif
+    data: <%= bindata 'feedlight_aqua/icon-folder.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'feedlight_aqua/stylesheet.css' %>
+    mimeType: text/x-c; charset=us-ascii
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_aqua_template:
+    name: template.html
+    data: <%= bindata 'feedlight_aqua/template.html' %>
+    mimeType: text/html
+    stylesheet_id: <%= feedlight_aqua.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_fade_png:
+    name: fade.png
+    data: <%= bindata 'feedlight_graphite/fade.png' %>
+    mimeType: image/png
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_graphite_hover_gif:
+    name: graphite-hover.gif
+    data: <%= bindata 'feedlight_graphite/graphite-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_graphite_gif:
+    name: graphite.gif
+    data: <%= bindata 'feedlight_graphite/graphite.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_grid_gif:
+    name: grid.gif
+    data: <%= bindata 'feedlight_graphite/grid.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_author_gif:
+    name: icon-author.gif
+    data: <%= bindata 'feedlight_graphite/icon-author.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_calendar_gif:
+    name: icon-calendar.gif
+    data: <%= bindata 'feedlight_graphite/icon-calendar.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_comment_hover_gif:
+    name: icon-comment-hover.gif
+    data: <%= bindata 'feedlight_graphite/icon-comment-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_comment_gif:
+    name: icon-comment.gif
+    data: <%= bindata 'feedlight_graphite/icon-comment.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_feed_hover_gif:
+    name: icon-feed-hover.gif
+    data: <%= bindata 'feedlight_graphite/icon-feed-hover.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_feed_gif:
+    name: icon-feed.gif
+    data: <%= bindata 'feedlight_graphite/icon-feed.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_icon_folder_gif:
+    name: icon-folder.gif
+    data: <%= bindata 'feedlight_graphite/icon-folder.gif' %>
+    mimeType: image/gif
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_stylesheet:
+    name: stylesheet.css
+    data: <%= bindata 'feedlight_graphite/stylesheet.css' %>
+    mimeType: text/x-c; charset=us-ascii
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>
+
+feedlight_graphite_template:
+    name: template.html
+    data: <%= bindata 'feedlight_graphite/template.html' %>
+    mimeType: text/html
+    stylesheet_id: <%= feedlight_graphite.id %>
+    updated_at: <%= now %>

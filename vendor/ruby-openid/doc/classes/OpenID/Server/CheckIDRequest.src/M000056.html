@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>answer (OpenID::Server::CheckIDRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/openid/server.rb, line 410</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">answer</span>(<span class="ruby-identifier">allow</span>, <span class="ruby-identifier">server_url</span>=<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">allow</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@immediate</span>
+          <span class="ruby-identifier">mode</span> = <span class="ruby-value str">'id_res'</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">mode</span> = <span class="ruby-value str">'cancel'</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">OpenIDResponse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">allow</span>
+          <span class="ruby-identifier">response</span>.<span class="ruby-identifier">add_fields</span>(<span class="ruby-keyword kw">nil</span>, {
+                                <span class="ruby-value str">'mode'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mode</span>,
+                                <span class="ruby-value str">'identity'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@identity</span>,
+                                <span class="ruby-value str">'return_to'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@return_to</span>
+                              })
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">response</span>.<span class="ruby-identifier">add_field</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-value str">'mode'</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-keyword kw">false</span>)
+          <span class="ruby-identifier">response</span>.<span class="ruby-identifier">signed</span>.<span class="ruby-identifier">clear</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@immediate</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">server_url</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;setup_url is required for allow=false in immediate mode&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-comment cmt"># make a request just like this one, but immediate mode</span>
+            <span class="ruby-identifier">setup_request</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'checkid_immediate'</span>,
+                                           <span class="ruby-ivar">@identity</span>,
+                                           <span class="ruby-ivar">@return_to</span>,
+                                           <span class="ruby-ivar">@trust_root</span>)
+            <span class="ruby-identifier">setup_url</span> = <span class="ruby-identifier">setup_request</span>.<span class="ruby-identifier">encode_to_url</span>(<span class="ruby-identifier">server_url</span>)
+            <span class="ruby-identifier">response</span>.<span class="ruby-identifier">add_field</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-value str">'user_setup_url'</span>, <span class="ruby-identifier">setup_url</span>, <span class="ruby-keyword kw">false</span>)
+          <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">response</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

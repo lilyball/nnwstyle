@@ -1,0 +1,17 @@
+<p>Fill in the fields, and attach an archive (.tar.gz/.zip) of your stylesheet.</p>
+</center>
+
+<div id="stylesheet-upload">
+  <% form_for :stylesheet, :html => { :multipart => true } do |form| %>
+    <%= error_messages_for :stylesheet %>
+    <label for="stylesheet_name">Name:</label>
+    <%= form.text_field :name %><br />
+    <label for="stylesheet_description">Description:</label>
+    <%= form.text_area :description, :rows => 5 %><br />
+    <label for="stylesheet_version">Version:</label>
+    <%= form.text_field :version %><br />
+    <label for="stylesheet_file">Upload:</label>
+    <%= form.file_field :file %><br />
+    <%= submit_tag %>
+  <% end %>
+</div>

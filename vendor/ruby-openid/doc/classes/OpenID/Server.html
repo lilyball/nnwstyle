@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: OpenID::Server</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">OpenID::Server</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/openid/server_rb.html">
+                lib/openid/server.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This module contains classes specific to implemeting an <a
+href="../OpenID.html">OpenID</a> server.
+</p>
+<h2>Overview</h2>
+<p>
+An <a href="../OpenID.html">OpenID</a> server must perform three tasks:
+</p>
+<pre>
+  1. Examine the incoming request to determine its nature and validity.
+
+  2. Make a decision about how to respond to this request.
+
+  3. Format the response according to the protocol.
+</pre>
+<p>
+The first and last of these tasks may performed by the
+Server.decode_request and Server.encode_response methods of the <a
+href="Server.html">OpenID::Server::Server</a> object. Who gets to do the
+intermediate task &#8212; deciding how to respond to the request &#8212;
+will depend on what type of request it is.
+</p>
+<p>
+If it&#8217;s a request to authenticate a user (a checkid_setup or
+checkid_immediate request), you need to decide if you will assert that this
+user may claim the identity in question. Exactly how you do that is a
+matter of application policy, but it generally involves making sure the
+user has an account with your system and is logged in, checking to see if
+that identity is hers to claim, and verifying with the user that she does
+consent to releasing that information to the party making the request. Do
+this by examining the properties of the <a
+href="Server/CheckIDRequest.html">CheckIDRequest</a> object, and when
+you&#8217;ve come to a decision, form a response by calling <a
+href="Server/CheckIDRequest.html#M000056">CheckIDRequest.answer</a>.
+</p>
+<p>
+Other types of requests relate to establishing associations between client
+and server and verifing the authenticity of previous communications. <a
+href="Server.html">Server</a> contains all the logic and data necessary to
+respond to such requests; just pass it to Server.handle_request.
+</p>
+<h2><a href="../OpenID.html">OpenID</a> Extensions</h2>
+<p>
+Do you want to provide other information for your users in addition to
+authentication? Version 1.2 of the <a href="../OpenID.html">OpenID</a>
+protocol allows consumers to add extensions to their requests. For example,
+with sites using the Simple Registration Extension <a
+href="http://www.openidenabled.com/openid/simple-registration-extension">www.openidenabled.com/openid/simple-registration-extension</a>/,
+a user can agree to have their nickname and e-mail address sent to a site
+when they sign up.
+</p>
+<p>
+Since extensions do not change the way <a href="../OpenID.html">OpenID</a>
+authentication works, code to handle extension requests may be completely
+separate from the <a href="Server/OpenIDRequest.html">OpenIDRequest</a>
+class here. But you&#8217;ll likely want data sent back by your extension
+to be signed. <a href="Server/OpenIDResponse.html">OpenIDResponse</a>
+provides methods with which you can add data to it which can be signed with
+the other data in the <a href="../OpenID.html">OpenID</a> signature.
+</p>
+<p>
+For example when request is a checkid_* request:
+</p>
+<pre>
+  response = request.answer(true)
+  # this will add a signed 'openid.sreg.timezone' parameter to the response
+  response.add_field('sreg', 'timezone', 'America/Los_Angeles')
+</pre>
+<h2>Stores</h2>
+<p>
+The <a href="../OpenID.html">OpenID</a> server needs to maintain state
+between requests in order to function. Its mechanism for doing this is
+called a store. The store interface is defined in <a
+href="Store.html">OpenID::Store</a>. Additionally, several concrete store
+implementations are provided, so that most sites won&#8217;t need to
+implement a custom store. For a store backed by flat files on disk, see <a
+href="FilesystemStore.html">OpenID::FilesystemStore</a>.
+</p>
+<h2>Upgrading</h2>
+<p>
+The keys by which a server looks up associations in its store have changed
+in version 1.2 of this library. If your store has entries created from
+version 1.0 code, you should empty it.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Server/AlreadySigned.html" class="link">OpenID::Server::AlreadySigned</a><br />
+Class <a href="Server/AssociateRequest.html" class="link">OpenID::Server::AssociateRequest</a><br />
+Class <a href="Server/CheckAuthRequest.html" class="link">OpenID::Server::CheckAuthRequest</a><br />
+Class <a href="Server/CheckIDRequest.html" class="link">OpenID::Server::CheckIDRequest</a><br />
+Class <a href="Server/Decoder.html" class="link">OpenID::Server::Decoder</a><br />
+Class <a href="Server/DiffieHellmanServerSession.html" class="link">OpenID::Server::DiffieHellmanServerSession</a><br />
+Class <a href="Server/Encoder.html" class="link">OpenID::Server::Encoder</a><br />
+Class <a href="Server/EncodingError.html" class="link">OpenID::Server::EncodingError</a><br />
+Class <a href="Server/MalformedReturnURL.html" class="link">OpenID::Server::MalformedReturnURL</a><br />
+Class <a href="Server/MalformedTrustRoot.html" class="link">OpenID::Server::MalformedTrustRoot</a><br />
+Class <a href="Server/OpenIDRequest.html" class="link">OpenID::Server::OpenIDRequest</a><br />
+Class <a href="Server/OpenIDResponse.html" class="link">OpenID::Server::OpenIDResponse</a><br />
+Class <a href="Server/PlainTextServerSession.html" class="link">OpenID::Server::PlainTextServerSession</a><br />
+Class <a href="Server/ProtocolError.html" class="link">OpenID::Server::ProtocolError</a><br />
+Class <a href="Server/Server.html" class="link">OpenID::Server::Server</a><br />
+Class <a href="Server/Signatory.html" class="link">OpenID::Server::Signatory</a><br />
+Class <a href="Server/SigningEncoder.html" class="link">OpenID::Server::SigningEncoder</a><br />
+Class <a href="Server/UntrustedReturnURL.html" class="link">OpenID::Server::UntrustedReturnURL</a><br />
+Class <a href="Server/WebResponse.html" class="link">OpenID::Server::WebResponse</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_REDIRECT</td>
+          <td>=</td>
+          <td class="context-item-value">302</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_OK</td>
+          <td>=</td>
+          <td class="context-item-value">200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HTTP_ERROR</td>
+          <td>=</td>
+          <td class="context-item-value">400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BROWSER_REQUEST_MODES</td>
+          <td>=</td>
+          <td class="context-item-value">['checkid_setup', 'checkid_immediate']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPENID_PREFIX</td>
+          <td>=</td>
+          <td class="context-item-value">'openid.'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENCODE_KVFORM</td>
+          <td>=</td>
+          <td class="context-item-value">['kvform'].freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ENCODE_URL</td>
+          <td>=</td>
+          <td class="context-item-value">['URL/redirect'].freeze</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

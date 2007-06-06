@@ -1,0 +1,6 @@
+<center>
+  <h1><%= @user.name %></h1>
+  Nickname: <%= @user.nickname %><br />
+  Full Name: <%= @user.fullname %><br />
+  Homepage: <%= link_to_unless @user.homepage.blank?, h(@user.homepage), @user.homepage %>
+</center>

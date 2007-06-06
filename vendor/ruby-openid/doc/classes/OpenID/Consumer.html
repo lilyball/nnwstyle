@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: OpenID::Consumer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">OpenID::Consumer</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/openid/consumer_rb.html">
+                lib/openid/consumer.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>Overview</h2>
+<p>
+Brief terminology:
+</p>
+<dl>
+<dt><tt><a href="Consumer.html">Consumer</a></tt></dt><dd>The website wanting to verify an <a href="../OpenID.html">OpenID</a>
+identity URL. Sometimes called a &quot;relying party&quot;. If you want
+people to log into your site using <a href="../OpenID.html">OpenID</a>,
+then you are the consumer.
+
+</dd>
+<dt><tt><a href="Server.html">Server</a></tt></dt><dd>The website which makes assertions as to whether or not the user at the end
+of the browser owns the URL they say they do.
+
+</dd>
+<dt><tt>Redirect</tt></dt><dd>An HTTP 302 (Temporarily Moved) redirect. When issued as an HTTP response
+from the server, the browser changes it&#8217;s location to the value
+specified.
+
+</dd>
+</dl>
+<p>
+The <a href="../OpenID.html">OpenID</a> authentication process requires the
+following steps, as visible to the user of this library:
+</p>
+<ol>
+<li>The user enters their <a href="../OpenID.html">OpenID</a> into a field on
+the consumer&#8217;s site, and hits a login button.
+
+</li>
+<li>The consumer site discovers the user&#8217;s <a
+href="../OpenID.html">OpenID</a> server information using the Yadis
+protocol (Potentially falling back to <a href="../OpenID.html">OpenID</a>
+1.0 &quot;linkrel&quot; discovery).
+
+</li>
+<li>The consumer site prepares a URL to be sent to the server which contains
+the <a href="../OpenID.html">OpenID</a> autentication information, and
+issues a redirect user&#8217;s browser.
+
+</li>
+<li>The server then verifies that the user owns the URL provided, and sends the
+browser a redirect back to the consumer. This redirect contains the
+server&#8217;s response to the authentication request.
+
+</li>
+</ol>
+<p>
+The most important part of the flow to note is the consumer&#8217;s site
+must handle two separate HTTP requests in order to perform the full
+identity check. These two HTTP requests are described in steps 1 and 4
+above, and are handled by <a
+href="Consumer.html#M000124">Consumer.begin</a> and <a
+href="Consumer.html#M000126">Consumer.complete</a> respectively.
+</p>
+<h2><a href="Consumer.html">Consumer</a> Library Design</h2>
+<p>
+The library is designed with the above flow in mind. The goal is to make it
+as easy as possible to perform the above steps securely.
+</p>
+<p>
+At a high level, there are two important parts in the consumer library. The
+first important part is the <a href="Consumer.html">OpenID::Consumer</a>
+class, which contains the public interface to the consumer logic. The
+second is the <a href="Store.html">OpenID::Store</a> class, which defines
+the interface needed to store the state the consumer needs to maintain
+between requests.
+</p>
+<p>
+In general, the second part is less important for users of the library to
+know about, as several concrete store implementations are provided. The
+user simply needs to choose the store which best fits their environment and
+requirements.
+</p>
+<h2>Stores and Dumb Mode</h2>
+<p>
+<a href="../OpenID.html">OpenID</a> is a protocol that works best when the
+consumer site is able to store some state. This is the normal mode of
+operation for the protocol, and is sometimes referred to as smart mode.
+There is also a fallback mode, known as dumb mode, which is available when
+the consumer site is not able to store state. This mode should be avoided
+when possible, as it leaves the implementation more vulnerable to replay
+attacks.
+</p>
+<p>
+The mode the library works in for normal operation is determined by the
+store that it is given. The store is an abstraction that handles the data
+that the consumer needs to manage between HTTP requests in order to operate
+efficiently and securely.
+</p>
+<p>
+Several store implementation are provided, and the interface is fully
+documented so that custom stores can be used as well. The implementations
+that are provided allow the consumer site to store data in a couple of
+different ways: in the filesystem, or in an SQL database.
+</p>
+<p>
+There is an additional concrete store provided that puts the consumer in
+dumb mode. This is not recommended, as it removes the library&#8217;s
+ability to stop replay attacks reliably. It still uses time-based checking
+to make replay attacks only possible within a small window, but they remain
+possible within that window. This store should only be used if the consumer
+site has no way to retain data between requests at all. See <a
+href="DumbStore.html">DumbStore</a> for more info.
+</p>
+<p>
+If your ennvironment permits, use of the <a
+href="FilesystemStore.html">FilesystemStore</a> is recommended.
+</p>
+<h2>Immediate Mode</h2>
+<p>
+If you are new to <a href="../OpenID.html">OpenID</a>, it is suggested that
+you skip this section and refer to it later. Immediate mode is an advanced
+consumer topic.
+</p>
+<p>
+In the flow described in the overview, the user may need to confirm to the
+identity server that it&#8217;s ok to authorize his or her identity. The
+server may draw pages asking for information from the user before it
+redirects the browser back to the consumer&#8217;s site. This is generally
+transparent to the consumer site, so it is typically ignored as an
+implementation detail.
+</p>
+<p>
+There can be times, however, where the consumer site wants to get a
+response immediately. When this is the case, the consumer can put the
+library in immediate mode. In immediate mode, there is an extra response
+possible from the server, which is essentially the server reporting that it
+doesn&#8217;t have enough information to answer the question yet. In
+addition to saying that, the identity server provides a URL to which the
+user can be sent to provide the needed information and let the server
+finish handling the original request.
+</p>
+<p>
+You may invoke immediate mode when building the redirect URL to the <a
+href="../OpenID.html">OpenID</a> server in the <a
+href="SuccessRequest.html#M000147">SuccessRequest.redirect_url</a> method.
+Pass true for the <tt>immediate</tt> paramter. Read the interface for <a
+href="Consumer.html#M000126">Consumer.complete</a> for information about
+handling the additional response.
+</p>
+<h2>Using the Library</h2>
+<p>
+Integrating this library into an application is a relatively
+straightforward process. The process usually follows this plan:
+</p>
+<p>
+Add an <a href="../OpenID.html">OpenID</a> login field somewhere on your
+site. When an <a href="../OpenID.html">OpenID</a> is entered in that field
+and the form is submitted, it should make a request to the site which
+includes that <a href="../OpenID.html">OpenID</a> URL.
+</p>
+<p>
+When your site receives that request, it should create an <a
+href="Consumer.html">OpenID::Consumer</a> instance, and call <a
+href="Consumer.html#M000124">OpenID::Consumer.begin</a>. If begin completes
+successfully, it will return a <a
+href="SuccessRequest.html">SuccessRequest</a> object. Otherwise it will
+subclass of <a href="OpenIDStatus.html">OpenIDStatus</a> which contains
+additional information about the the failure.
+</p>
+<p>
+If successful, build a redirect URL to the server by calling <a
+href="SuccessRequest.html#M000147">SuccessRequest.redirect_url</a> and send
+back an HTTP 302 redirect of that URL to the user&#8217;s browser. The
+redirect_url accepts a return_to parameter, which is the URL to which they
+will return to fininsh the <a href="../OpenID.html">OpenID</a> transaction.
+This URL is supplied by you, and should be able to handle step 4 of the
+flow described in the overview.
+</p>
+<p>
+That&#8217;s the first half of the authentication process. The second half
+of the process is done after the <a href="../OpenID.html">OpenID</a> server
+sends the user&#8217;s browser a redirect back to your site with the
+authentication response.
+</p>
+<p>
+When that happens, the browser will make a request to the return_to URL you
+provided to the <a
+href="SuccessRequest.html#M000147">SuccessRequest.redirect_url</a> method.
+The request will have several query parameters added to the URL by the
+identity server as the information necessary to finish the request.
+</p>
+<p>
+Your job here is to make sure that the action performed at the return_to
+URL creates an instnce of <a href="Consumer.html">OpenID::Consumer</a>, and
+calls the <a href="Consumer.html#M000126">Consumer.complete</a> method.
+This call will return a <a href="SuccessResponse.html">SuccessResponse</a>
+object, or a subclass of <a href="OpenIDStatus.html">OpenIDStatus</a>
+explaining, the failure. See the documentation for <a
+href="Consumer.html#M000126">Consumer.complete</a> for a full explanation
+of the possible responses.
+</p>
+<p>
+If you received a <a href="SuccessResponse.html">SuccessResponse</a>, you
+may access the identity URL of the user though it&#8217;s
+<tt>identity_url</tt> method.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000124">begin</a>&nbsp;&nbsp;
+      <a href="#M000125">begin_without_discovery</a>&nbsp;&nbsp;
+      <a href="#M000126">complete</a>&nbsp;&nbsp;
+      <a href="#M000127">get_discovery</a>&nbsp;&nbsp;
+      <a href="#M000123">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">consumer</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fetcher</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">session</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="Consumer.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('Consumer.src/M000123.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(session, store, fetcher=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a new <a href="Consumer.html">OpenID::Consumer</a> instance. You
+should create a new instance of the <a href="Consumer.html">Consumer</a>
+object with every HTTP request that handles <a
+href="../OpenID.html">OpenID</a> transactions. Do not store the instance of
+it in a global variable somewhere.
+</p>
+<dl>
+<dt><tt>session</tt></dt><dd>A hash-like object representing the user&#8217;s session data. This is used
+for keeping state of the <a href="../OpenID.html">OpenID</a> transaction
+when the user is redirected to the server. In a rails application, the
+controller&#8217;s @session instance variable should be used.
+
+</dd>
+<dt><tt>store</tt></dt><dd>This must be an object that implements the <a
+href="Store.html">OpenID::Store</a> interface. Several concrete
+implementations are provided, to cover most common use cases. We recommend
+using the simple file based store bundled with the library: <a
+href="FilesystemStore.html">OpenID::FilesystemStore</a>.
+
+</dd>
+<dt><tt>fetcher</tt></dt><dd>Optional. If provided, this must be an instance that implements <a
+href="Fetcher.html">OpenID::Fetcher</a> interface. If no fetcher is
+provided, an <a href="StandardFetcher.html">OpenID::StandardFetcher</a>
+instance will be created for you automatically. If you need custom fetcher
+behavior, it is probably best to subclass <a
+href="StandardFetcher.html">StandardFetcher</a>, and pass your instance in
+here.
+
+</dd>
+</dl>
+<p>
+This object keeps an internal instance of <a
+href="GenericConsumer.html">OpenID::GenericConsumer</a> for low level <a
+href="../OpenID.html">OpenID</a> calls, called <tt>consumer</tt>. You may
+use a custom certificate authority PEM file for veryifying HTTPS server
+certs by calling the GenericConsumer.ca_path= method of the
+<tt>consumer</tt> instance variable.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="Consumer.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('Consumer.src/M000124.html');return false;">
+          <span class="method-name">begin</span><span class="method-args">(user_url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<tt>begin</tt> is called to start the <a href="../OpenID.html">OpenID</a>
+verification process. See steps 1-2 in the overview at the top of this
+file.
+</p>
+<h2>Parameters</h2>
+<dl>
+<dt><tt>user_url</tt></dt><dd>Identity URL given by the user. <tt>begin</tt> performs a textual
+transformation of the URL to try and make sure it is
+&quot;normalized&quot;, for example, a user_url of example.com will be
+normalized to <a href="http://example.com">example.com</a>/ normalizing and
+resolving any redirects the server might issue.
+
+</dd>
+</dl>
+<h2>Return Value</h2>
+<p>
+<tt>begin</tt> returns a subclass of <a
+href="OpenIDStatus.html">OpenIDStatus</a>, which is an object that has a
+<tt>status</tt> method. The status methodfor this object will either return
+OpenID::SUCCESS, or OpenID::FAILURE. Generally <tt>begin</tt> will fail if
+the users&#8217; <a href="../OpenID.html">OpenID</a> page cannot be
+retrieved or <a href="../OpenID.html">OpenID</a> server information cannot
+be determined.
+</p>
+<h3>Success</h3>
+<p>
+In the case that request.status equals OpenID::SUCCESS, the response will
+be of type <a href="SuccessRequest.html">OpenID::SuccessRequest</a>. The <a
+href="SuccessRequest.html">SuccessRequest</a> object may the be used to add
+simple registration extension arguments, using <a
+href="SuccessRequest.html#M000149">SuccessRequest.add_extension_arg</a>,
+and build the redirect url to the server using <a
+href="SuccessRequest.html#M000147">SuccessRequest.redirect_url</a> as
+described in step 3 of the overview.
+</p>
+<p>
+The next step in the success case is to actually build the redirect URL to
+the server. Please see the documentation for <a
+href="SuccessRequest.html#M000147">SuccessRequest.redirect_url</a> for
+details. Once the redirect url is created, you should issue an HTTP 302
+temporary redirect to the user&#8217;s browser, sending her to the <a
+href="../OpenID.html">OpenID</a> server. Once the user finishes the
+operations on the server, she will be redirected back to the return_to URL
+you passed to redirect_url, which should invoke the <a
+href="Consumer.html#M000126">Consumer.complete</a> method.
+</p>
+<h3>Failure</h3>
+<p>
+If the library is unable to fetch the <tt>user_url</tt>, or no server
+information can be determined, or if the server information is malformed,
+<tt>begin</tt> will return a <a
+href="FailureRequest.html">FailureRequest</a> object. The status method of
+this object will return OpenID::FAILURE. <a
+href="FailureRequest.html">FailureRequest</a> objects have a <tt>msg</tt>
+method which provides more detailed information as to why the request
+failed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="Consumer.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('Consumer.src/M000125.html');return false;">
+          <span class="method-name">begin_without_discovery</span><span class="method-args">(service)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Start the <a href="../OpenID.html">OpenID</a> transaction without doing <a
+href="../OpenID.html">OpenID</a> server discovery. This method is used
+internally by <a href="Consumer.html#M000124">Consumer.begin</a> after
+discovery is performed, and exists to provide an interface for library
+users needing to perform their own discovery.
+</p>
+<h2>Parameters</h2>
+<p>
+<tt>service</tt> must be an OpenID::OpenIDServiceEnpoint object, or an
+object that implements it&#8217;s interface. You may produce these objects
+and perform discovery manually using <a
+href="OpenIDDiscovery.html">OpenID::OpenIDDiscovery</a>.
+</p>
+<h2>Return Value</h2>
+<p>
+<tt><a href="Consumer.html#M000125">begin_without_discovery</a></tt> always
+returns an <a href="SuccessRequest.html">OpenID::SuccessRequest</a> object.
+Please see the success documentation for <a
+href="Consumer.html#M000124">OpenID::Consumer.begin</a> for more
+information.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="Consumer.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('Consumer.src/M000126.html');return false;">
+          <span class="method-name">complete</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called to interpret the server&#8217;s response to an <a
+href="../OpenID.html">OpenID</a> request. It is called in step 4 of the
+flow described in the consumer overview.
+</p>
+<h2>Parameters</h2>
+<dl>
+<dt><tt>query</tt></dt><dd>A hash of the query paramters for this HTTP request.
+
+</dd>
+</dl>
+<h2>Return Value</h2>
+<p>
+Return value is a subclass of <a href="OpenIDStatus.html">OpenIDStatus</a>,
+and may have a status of OpenID::SUCCESS, OpenID::CANCEL, OpenID::FAILURE,
+or OpenID::SETUP_NEEDED. The status may be accessed through the
+<tt>status</tt> method of the response object.
+</p>
+<p>
+When OpenID::SUCCESS is returned, the response object will be of type <a
+href="SuccessResponse.html">SuccessResponse</a>, which has several useful
+attributes including <tt>identity_url</tt>, <tt>service</tt>, and a method
+<tt>extension_response</tt> for extracting potential signed extension
+reponses from the server. See the documentation for <a
+href="SuccessResponse.html">OpenID::SuccessResponse</a> for more
+information about it&#8217;s interface and methods.
+</p>
+<p>
+In the case of response.status being OpenID::CANCEL, the user cancelled the
+<a href="../OpenID.html">OpenID</a> transaction on the server. The response
+will be an instance of <a
+href="CancelResponse.html">OpenID::CancelResponse</a>, and you may access
+the originally submitted identity URL and service information through that
+object.
+</p>
+<p>
+When status is OpenID::FAILURE, the object will be an instance of <a
+href="FailureResponse.html">OpenID::FailureResponse</a>. If the identity
+which failed can be determined it will be available by accessing the
+<tt>identity_url</tt> attribute of the response. <a
+href="FailureResponse.html">FailureResponse</a> objects also have a
+<tt>msg</tt> attribute which may be useful in debugging. If no msg is
+specified, msg will be nil.
+</p>
+<p>
+When OpenID::SETUP_NEEDED is returned, the response object is an instance
+of <a href="SetupNeededResponse.html">OpenID::SetupNeededResponse</a>. The
+useful piece of information contained in this response is the
+<tt>setup_url</tt> method, which should be used to send the user to the
+server and log in. This response is only generated by immediate mode
+requests (openid.mode=immediate). The user should be redirected in to the
+<tt>setup_url</tt>, either in the current window or in a new browser
+window.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="Consumer.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('Consumer.src/M000127.html');return false;">
+          <span class="method-name">get_discovery</span><span class="method-args">(url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used internally to create an instnace of the <a
+href="OpenIDDiscovery.html">OpenIDDiscovery</a> object.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+/* Gray Lady v1.0b for NNW 2.0b16 by Noah Mittman (http://www.teradome.com) */
+/*
+Combined View: <body id="combinedViewBody" class="multipleNewsItems">
+Widescreen: <body id="widescreenViewBody" class="completeNewsItem">
+Traditional: <body id="traditionalViewBody" class="completeNewsItem">
+*/
+
+body {
+	background-color: #f8f8f8;
+}
+
+a:link {
+	color: #006;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.completeNewsItem .newsItemContainer {
+	position: relative;
+	margin: 8px;
+	padding: 0;
+	font-family: sans-serif;
+	z-index: 10;
+}
+
+.completeNewsItem .newsItemDateLine span {
+	display: block;
+	font-style: normal !important;
+}
+
+.completeNewsItem .newsItemSource img {
+	display: block;
+	position: absolute;
+	top: 0;
+	z-index: 50;
+}
+
+.completeNewsItem .newsItemSubject, .completeNewsItem #newsItemUnfiled {
+	position: absolute;
+	top: 0;
+	width: 99%;
+	height: 1.4em;
+	font-weight: bolder;
+	text-align: center;
+	text-transform: capitalize;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 1.7em;
+	z-index: 40;
+	overflow: hidden;
+	background-color: #fff;
+}
+.completeNewsItem #newsItemUnfiled {
+	z-index: 39;
+	text-transform: none !important;
+}
+
+.completeNewsItem .newsItemTitle {
+	position: absolute;
+	top: 1.5em;
+	width: 99%;
+	height: 2.5em;
+	display: block;
+	padding-top: 1em;
+	font-size: 1.4em;
+	font-weight: normal;
+	text-align: left;
+	border-top: 3px solid black;
+	overflow: hidden;
+	z-index: 50;
+}
+
+.completeNewsItem .newsItemTitle a {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.completeNewsItem .newsItemCreator {
+	position: absolute;
+	top: 7.5em;
+	height: 1.5em;
+	text-transform: uppercase;
+	z-index: 40;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.completeNewsItem .newsItemCreator:before { content: "By "; }
+
+.completeNewsItem .newsItemDate {
+	position: absolute;
+	top: 9em;
+	height: 1.5em;
+	z-index: 30;
+	font-family: Arial, sans-serif;
+}
+
+.completeNewsItem .newsItemDate:before { content: "Published: "; }
+
+.newsItemBody {
+	position: relative;
+	top: 0em;
+	text-align: left;
+	font-size: 1.1em;
+	margin-bottom: 2em;
+	z-index: 20;
+}
+.newsItemBody:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.newsItemExtraLinks {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 11px;
+	width: 35%;
+	max-width: 200px;
+	float: right;
+	z-index: 20;
+	margin-left: 1em;
+}
+
+.completeNewsItem .newsItemExtraLinks { margin-top: 12em; }
+
+.newsItemExtraLinks p {
+	border: 1px solid #ccc;
+	padding: 0.8em;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.newsItemExtraLinks a {
+	display: list-item;
+	list-style: square inside;
+	font-weight: normal;
+}
+
+.completeNewsItem .newsItemDescription { padding-top: 9.5em; }
+
+.newsItemDescription:first-letter, .newsItemDescription > *:first-child:first-letter {
+	text-decoration: none !important;
+	font-size: 4em;
+	margin-top: -0.2em;
+	padding: 0 0.2em 0 0;
+	float: left;
+	color: #AD0000;
+	font-weight: bolder;
+	text-transform: uppercase;
+}
+
+.newsItemDescription:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.completeNewsItem .newsItemSource, .completeNewsItem .newsItemEnclosure, .completeNewsItem .newsItemCommentsLink {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 11px;
+	width: 99%;
+	padding: 0.4em 0;
+	border-bottom: 1px solid gray;
+}
+
+.completeNewsItem .newsItemSource {
+	border-top: 3px solid gray;
+}
+
+.completeNewsItem .newsItemSource:before { content: "Source: "; }
+.completeNewsItem .newsItemEnclosure:before { content: "Enclosure: "; }
+.completeNewsItem .newsItemCommentsLink:before { content: "Related: "; }

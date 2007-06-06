@@ -1,0 +1,63 @@
+<%= link_to "Back to list", :action => 'index' %>
+
+<div id="stylesheet-header">
+  <h1><%= @stylesheet.name %><span id="stylesheet-version">v<%= @stylesheet.version %></span></h1>
+
+  <span id="byline">By <%= link_to h(@stylesheet.user.name), :controller => 'user', :action => 'show', :id => @stylesheet.user %></span>
+</div>
+
+<iframe src="<%= url_for :action => 'preview', :id => @stylesheet %>" id="preview">No preview is available because your browser does not support frames</iframe>
+
+<p id="description"><%= @stylesheet.description %></p>
+
+<div id="downloads">
+  <span>
+    <a href="<%= url_for :action => 'download', :id => @stylesheet %>">Download</a> |
+    <a href="<%= url_for :action => 'download', :id => @stylesheet,
+                         :only_path => false, :protocol => 'nnw-style://' %>">Install</a>
+   </span>
+</div>
+
+<div id="comments">
+  <h2>Comments</h2>
+  <%= render :partial => "comment", :collection => @stylesheet.comments %>
+  
+  <%- if user.nil? -%>
+  <%= update_page_tag do |page|
+        page << 'function show_login() {'
+        page[:'comments-login-form'].visual_effect :appear
+        page[:'comments-login-msg'].hide
+        page << '}'
+      end
+  %>
+  <div id="comments-login">
+    <div id="comments-login-msg">
+      Please <%= link_to 'login', '#', :onclick => 'show_login(); return false' %> to comment.
+    </div>
+    <div id="comments-login-form" style="display: none;">
+      <% form_tag :controller => 'user', :action=> 'login' do -%>
+        <input type="hidden" name="redirect" value="<%= url_for() %>" />
+        <label for="openid_url">OpenID Login:</label>
+        <input type="text" name="openid_url" id="openid_url" size="30" value="" />
+        <input type="submit" name="login" value="Login &#187;" />
+      <% end -%>
+    </div>
+  </div>
+  <%- else -%>
+  <div id="comments-form">
+  <% form_for :comment do |form| %>
+    <span>
+      You are logged in as <%= link_to_unless user.homepage.blank?, h(user.name), user.homepage %>.
+      <%= link_to "Logout", :controller => 'user', :action => 'logout' %>
+    </span>
+    <%= error_messages_for :comment %>
+    <label for="comment_rating" id="label_comment_rating">Rating</label>
+    <%= form.select :rating, (1..5).collect {|i| ["★" * i, i]}, :include_blank => true %>
+    <label for="comment_body" id="label_comment_body">Comment:</label>
+    <%= form.text_area :body %><br />
+    <%= submit_tag 'Submit' %>
+  <% end %>
+  </div>
+  <%- end -%>
+</div>
+

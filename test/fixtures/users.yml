@@ -1,0 +1,46 @@
+ranchero:
+    openid_url: url_1
+    nickname: Ranchero Software
+    uses_full_name: 0
+    homepage: http://ranchero.com
+
+noah:
+    openid_url: url_2
+    nickname: Noah
+    fullname: Noah Mittman
+    uses_full_name: 1
+    homepage: http://www.teradome.com/
+
+gruber:
+    openid_url: url_3
+    nickname: Gruber
+    fullname: John Gruber
+    uses_full_name: 1
+    homepage: http://daringfireball.net
+
+bartelme:
+    openid_url: url_4
+    nickname: Wolfgang
+    fullname: Wolfgang Bartelme
+    uses_full_name: 1
+    homepage: http://www.bartelme.at/
+
+karen:
+    openid_url: url_5
+    nickname: Karen
+    fullname: Karen Hughes
+    uses_full_name: 1
+
+wolf:
+    openid_url: url_6
+    nickname: Wolf
+    fullname: Jonathan Rentzsch
+    uses_full_name: 1
+    homepage: http://www.rentzsch.com
+
+brokenlogic:
+    openid_url: url_7
+    nickname: Alex
+    fullname: Alex Hong
+    uses_full_name: 1
+    homepage: http://graphr.net/

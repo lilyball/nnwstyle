@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: OpenID::OpenIDServiceEndpoint</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">OpenID::OpenIDServiceEndpoint</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/openid/service_rb.html">
+                lib/openid/service.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ServiceEndpoint
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+OpenIDService is an object representation of an <a
+href="../OpenID.html">OpenID</a> server, and the services it provides. It
+contains a useful information such as the server URL, and information about
+the <a href="../OpenID.html">OpenID</a> identity bound to the server.
+OpenIDService object should be produced using the
+OpenIDService.from_service class method with a Yadis Service object. See
+the ruby Yadis library for more information:
+</p>
+<p>
+<a
+href="http://www.openidenabled.com/yadis/libraries/ruby">www.openidenabled.com/yadis/libraries/ruby</a>
+</p>
+<p>
+Unless you choose to do your own discovery and interface with
+OpenIDConsumer through the OpenIDConsumer.begin_without_discovery method,
+you won&#8217;t need to ever use this object directly. It is used
+internally by the OpenIDConsumer object.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000204">canonical_id</a>&nbsp;&nbsp;
+      <a href="#M000203">consumer_id</a>&nbsp;&nbsp;
+      <a href="#M000200">delegate</a>&nbsp;&nbsp;
+      <a href="#M000196">from_endpoint</a>&nbsp;&nbsp;
+      <a href="#M000197">is_type?</a>&nbsp;&nbsp;
+      <a href="#M000202">server_id</a>&nbsp;&nbsp;
+      <a href="#M000201">server_url</a>&nbsp;&nbsp;
+      <a href="#M000199">supports?</a>&nbsp;&nbsp;
+      <a href="#M000198">uses_extension?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">canonical_id</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">delegate_url</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">service_types</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">uri</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">xrds_uri</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">yadis_url</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000196" class="method-detail">
+        <a name="M000196"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000196.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000196.html');return false;">
+          <span class="method-name">from_endpoint</span><span class="method-args">(service, versions=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Class method to produce OpenIDService objects. Call with a Yadis Service
+object. Will return nil if the Service object does not represent an an <a
+href="../OpenID.html">OpenID</a> server.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000197" class="method-detail">
+        <a name="M000197"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000197.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000197.html');return false;">
+          <span class="method-name">is_type?</span><span class="method-args">(service, versions=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Class method to determine if a Yadis service object is an <a
+href="../OpenID.html">OpenID</a> server. <tt>versions</tt> is a list of
+Strings representing the versions of the <a
+href="../OpenID.html">OpenID</a> protocol you support. Only service that
+match one of the versions will return a value that evaluates to true. If no
+<tt>versions</tt> list is specified, all versions will be accepted.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000204" class="method-detail">
+        <a name="M000204"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000204.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000204.html');return false;">
+          <span class="method-name">canonical_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000203" class="method-detail">
+        <a name="M000203"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000203.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000203.html');return false;">
+          <span class="method-name">consumer_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The URL the user entered to authenticate. For example, if <a
+href="http://example.com">example.com</a>/ delegates to <a
+href="http://example.myopenid.com">example.myopenid.com</a>/, this method
+will return <a href="http://example.com">example.com</a>/
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000200" class="method-detail">
+        <a name="M000200"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000200.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000200.html');return false;">
+          <span class="method-name">delegate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="../OpenID.html">OpenID</a> delegate URL. This is the
+URL on the <a href="../OpenID.html">OpenID</a> server, For example if
+example.com delegates to example-server.com/user, then this will return
+example-server.com/user
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000202" class="method-detail">
+        <a name="M000202"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000202.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000202.html');return false;">
+          <span class="method-name">server_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns user&#8217;s URL which resides on the <a
+href="../OpenID.html">OpenID</a> server. For example if <a
+href="http://example.com">example.com</a>/ delegates to <a
+href="http://example.myopenid.com">example.myopenid.com</a>/, then <a
+href="http://example.myopenid.com">example.myopenid.com</a>/ will be
+returned by this method.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000201" class="method-detail">
+        <a name="M000201"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000201.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000201.html');return false;">
+          <span class="method-name">server_url</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="../OpenID.html">OpenID</a> server endpoint URL.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000199" class="method-detail">
+        <a name="M000199"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000199.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000199.html');return false;">
+          <span class="method-name">supports?</span><span class="method-args">(url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="OpenIDServiceEndpoint.html#M000198">uses_extension?</a>
+Checks to see if the provided URL is in the list of service types. Example
+that checks for support of the simple registratino protocol:
+</p>
+<pre>
+  service.supports?('http://openid.net/sreg/1.0')
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000198" class="method-detail">
+        <a name="M000198"></a>
+
+        <div class="method-heading">
+          <a href="OpenIDServiceEndpoint.src/M000198.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenIDServiceEndpoint.src/M000198.html');return false;">
+          <span class="method-name">uses_extension?</span><span class="method-args">(extension_url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for +supports?+
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

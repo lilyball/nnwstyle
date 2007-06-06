@@ -1,0 +1,250 @@
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+
+    Methods
+
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="rdoc-style.css" type="text/css" />
+  <base target="docwin" />
+</head>
+<body>
+<div id="index">
+  <h1 class="section-bar">Methods</h1>
+  <div id="index-entries">
+    <a href="classes/OpenID/Association.html#M000137">== (OpenID::Association)</a><br />
+    <a href="classes/HTMLToken.html#M000020">== (HTMLToken)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000113">_get_association (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000163">_get_server_assocs (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000190">_parse_url (OpenID::TrustRoot)</a><br />
+    <a href="classes/OpenID/Util.html#M000049">_remove_dot_segments (OpenID::Util)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000150">add_arg (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000149">add_extension_arg (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000099">add_field (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000100">add_fields (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Association.html#M000136">add_signature (OpenID::Association)</a><br />
+    <a href="classes/OpenID/Server/AssociateRequest.html#M000074">answer (OpenID::Server::AssociateRequest)</a><br />
+    <a href="classes/OpenID/Server/DiffieHellmanServerSession.html#M000062">answer (OpenID::Server::DiffieHellmanServerSession)</a><br />
+    <a href="classes/OpenID/Server/CheckAuthRequest.html#M000092">answer (OpenID::Server::CheckAuthRequest)</a><br />
+    <a href="classes/OpenID/Server/PlainTextServerSession.html#M000077">answer (OpenID::Server::PlainTextServerSession)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000056">answer (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/Util.html#M000040">append_args (OpenID::Util)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000187">associate (OpenID::GenericConsumer)</a><br />
+    <a href="classes/HTMLTag.html#M000022">attr_hash (HTMLTag)</a><br />
+    <a href="classes/OpenID/Util.html#M000036">base64_to_num (OpenID::Util)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000181">begin (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/Consumer.html#M000124">begin (OpenID::Consumer)</a><br />
+    <a href="classes/OpenID/Consumer.html#M000125">begin_without_discovery (OpenID::Consumer)</a><br />
+    <a href="classes/OpenID/ServerAssocs.html#M000177">best (OpenID::ServerAssocs)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000180">ca_path= (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000058">cancel_url (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000204">canonical_id (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000184">check_auth (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000192">check_sanity (OpenID::TrustRoot)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000117">clean (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000182">complete (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/Consumer.html#M000126">complete (OpenID::Consumer)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000203">consumer_id (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000069">create_association (OpenID::Server::Signatory)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000108">create_auth_key (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000185">create_nonce (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/Server/Decoder.html#M000064">decode (OpenID::Server::Decoder)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000079">decode_request (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000164">deepcopy (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000200">delegate (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/FakeOpenIDServiceEndpoint.html#M000169">delegate (OpenID::FakeOpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/Association.html#M000130">deserialize (OpenID::Association)</a><br />
+    <a href="classes/OpenID/XRIDiscovery.html#M000172">discover (OpenID::XRIDiscovery)</a><br />
+    <a href="classes/OpenID/OpenIDDiscovery.html#M000153">discover (OpenID::OpenIDDiscovery)</a><br />
+    <a href="classes/OpenID/StandardFetcher.html#M000219">do_get (OpenID::StandardFetcher)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000183">do_id_res (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000156">dumb? (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000144">dumb? (OpenID::Store)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000212">dumb? (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/Server/Encoder.html#M000093">encode (OpenID::Server::Encoder)</a><br />
+    <a href="classes/OpenID/Server/SigningEncoder.html#M000052">encode (OpenID::Server::SigningEncoder)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000081">encode_response (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000105">encode_to_kvform (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Server/ProtocolError.html#M000088">encode_to_kvform (OpenID::Server::ProtocolError)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000104">encode_to_url (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Server/ProtocolError.html#M000087">encode_to_url (OpenID::Server::ProtocolError)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000057">encode_to_url (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000122">ensure_dir (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Association.html#M000133">expired? (OpenID::Association)</a><br />
+    <a href="classes/OpenID/Association.html#M000132">expires_in (OpenID::Association)</a><br />
+    <a href="classes/OpenID/SuccessResponse.html#M000167">extension_response (OpenID::SuccessResponse)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000119">filename_from_url (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Util.html#M000030">from_base64 (OpenID::Util)</a><br />
+    <a href="classes/OpenID/DiffieHellman.html#M000220">from_base64 (OpenID::DiffieHellman)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000196">from_endpoint (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/Association.html#M000128">from_expires_in (OpenID::Association)</a><br />
+    <a href="classes/OpenID/Server/PlainTextServerSession.html#M000076">from_query (OpenID::Server::PlainTextServerSession)</a><br />
+    <a href="classes/OpenID/Server/DiffieHellmanServerSession.html#M000061">from_query (OpenID::Server::DiffieHellmanServerSession)</a><br />
+    <a href="classes/OpenID/Server/CheckAuthRequest.html#M000091">from_query (OpenID::Server::CheckAuthRequest)</a><br />
+    <a href="classes/OpenID/Server/AssociateRequest.html#M000073">from_query (OpenID::Server::AssociateRequest)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000054">from_query (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/StandardFetcher.html#M000216">get (OpenID::StandardFetcher)</a><br />
+    <a href="classes/OpenID/ServerAssocs.html#M000175">get (OpenID::ServerAssocs)</a><br />
+    <a href="classes/OpenID/Fetcher.html#M000188">get (OpenID::Fetcher)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000006">getNextToken (HTMLTokenizer)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000007">getTag (HTMLTokenizer)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000008">getText (HTMLTokenizer)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000009">getTrimmedText (HTMLTokenizer)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000186">get_association (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/Store.html#M000139">get_association (OpenID::Store)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000158">get_association (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000070">get_association (OpenID::Server::Signatory)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000207">get_association (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000112">get_association (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000110">get_association_filename (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000143">get_auth_key (OpenID::Store)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000109">get_auth_key (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000211">get_auth_key (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000162">get_auth_key (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/Consumer.html#M000127">get_discovery (OpenID::Consumer)</a><br />
+    <a href="classes/OpenID/StandardFetcher.html#M000218">get_http_obj (OpenID::StandardFetcher)</a><br />
+    <a href="classes/OpenID/Util.html#M000026">get_openid_params (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000046">get_random_bytes (OpenID::Util)</a><br />
+    <a href="classes/OpenID/DiffieHellman.html#M000222">get_shared_secret (OpenID::DiffieHellman)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000080">handle_request (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/Server/ProtocolError.html#M000086">has_return_to? (OpenID::Server::ProtocolError)</a><br />
+    <a href="classes/OpenID/Util.html#M000027">hmac_sha1 (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000059">identity_url (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/Object.html#M000024">instance_variable_hash (Object)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000071">invalidate (OpenID::Server::Signatory)</a><br />
+    <a href="classes/OpenID/Server/WebResponse.html#M000096">is_redirect? (OpenID::Server::WebResponse)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000197">is_type? (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/Util.html#M000031">kvform (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000045">log (OpenID::Util)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000118">mktemp (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000102">needs_signing? (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Consumer.html#M000123">new (OpenID::Consumer)</a><br />
+    <a href="classes/OpenID/Server/WebResponse.html#M000094">new (OpenID::Server::WebResponse)</a><br />
+    <a href="classes/OpenID/Server/CheckAuthRequest.html#M000090">new (OpenID::Server::CheckAuthRequest)</a><br />
+    <a href="classes/OpenID/Server/ProtocolError.html#M000085">new (OpenID::Server::ProtocolError)</a><br />
+    <a href="classes/OpenID/Server/MalformedReturnURL.html#M000084">new (OpenID::Server::MalformedReturnURL)</a><br />
+    <a href="classes/OpenID/OpenIDDiscovery.html#M000152">new (OpenID::OpenIDDiscovery)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000003">new (HTMLTokenizer)</a><br />
+    <a href="classes/OpenID/XRIDiscovery.html#M000171">new (OpenID::XRIDiscovery)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000078">new (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/FakeOpenIDServiceEndpoint.html#M000168">new (OpenID::FakeOpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/Server/PlainTextServerSession.html#M000075">new (OpenID::Server::PlainTextServerSession)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000098">new (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Server/AssociateRequest.html#M000072">new (OpenID::Server::AssociateRequest)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000066">new (OpenID::Server::Signatory)</a><br />
+    <a href="classes/OpenID/SuccessResponse.html#M000166">new (OpenID::SuccessResponse)</a><br />
+    <a href="classes/OpenID/Server/UntrustedReturnURL.html#M000065">new (OpenID::Server::UntrustedReturnURL)</a><br />
+    <a href="classes/OpenID/ServerAssocs.html#M000173">new (OpenID::ServerAssocs)</a><br />
+    <a href="classes/OpenID/Server/OpenIDRequest.html#M000063">new (OpenID::Server::OpenIDRequest)</a><br />
+    <a href="classes/OpenID/Server/DiffieHellmanServerSession.html#M000060">new (OpenID::Server::DiffieHellmanServerSession)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000053">new (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/StandardFetcher.html#M000215">new (OpenID::StandardFetcher)</a><br />
+    <a href="classes/OpenID/DiffieHellman.html#M000221">new (OpenID::DiffieHellman)</a><br />
+    <a href="classes/OpenID/FailureResponse.html#M000165">new (OpenID::FailureResponse)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000106">new (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Association.html#M000131">new (OpenID::Association)</a><br />
+    <a href="classes/HTMLComment.html#M000010">new (HTMLComment)</a><br />
+    <a href="classes/OpenID/GenericConsumer.html#M000179">new (OpenID::GenericConsumer)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000193">new (OpenID::TrustRoot)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000146">new (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/SetupNeededResponse.html#M000145">new (OpenID::SetupNeededResponse)</a><br />
+    <a href="classes/OpenID/OpenIDStatus.html#M000178">new (OpenID::OpenIDStatus)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000205">new (OpenID::DumbStore)</a><br />
+    <a href="classes/HTMLTag.html#M000021">new (HTMLTag)</a><br />
+    <a href="classes/OpenID/CancelResponse.html#M000213">new (OpenID::CancelResponse)</a><br />
+    <a href="classes/HTMLToken.html#M000016">new (HTMLToken)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000155">new (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/FailureRequest.html#M000214">new (OpenID::FailureRequest)</a><br />
+    <a href="classes/OpenID/Server/SigningEncoder.html#M000051">new (OpenID::Server::SigningEncoder)</a><br />
+    <a href="classes/OpenID/Util.html#M000047">normalize_url (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000035">num_to_base64 (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000033">num_to_str (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000083">openid_associate (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/Server/Server.html#M000082">openid_check_authentication (OpenID::Server::Server)</a><br />
+    <a href="classes/OpenID/OpenIDDiscovery.html#M000154">openid_discovery (OpenID::OpenIDDiscovery)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000191">parse (OpenID::TrustRoot)</a><br />
+    <a href="files/lib/openid/parse_rb.html#M000001">parse_link_attrs (lib/openid/parse.rb)</a><br />
+    <a href="classes/OpenID/Util.html#M000039">parse_query (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000032">parsekv (OpenID::Util)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000005">peekNextToken (HTMLTokenizer)</a><br />
+    <a href="classes/OpenID/StandardFetcher.html#M000217">post (OpenID::StandardFetcher)</a><br />
+    <a href="classes/OpenID/Fetcher.html#M000189">post (OpenID::Fetcher)</a><br />
+    <a href="classes/Net/HTTP.html#M000224">post_connection_check (Net::HTTP)</a><br />
+    <a href="classes/OpenID/Util.html#M000043">powermod (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000044">rand (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000037">random_string (OpenID::Util)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000107">read_auth_key (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Server/WebResponse.html#M000097">redirect_url (OpenID::Server::WebResponse)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000147">redirect_url (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/ServerAssocs.html#M000176">remove (OpenID::ServerAssocs)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000208">remove_association (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000140">remove_association (OpenID::Store)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000159">remove_association (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000114">remove_association (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000121">remove_if_present (OpenID::FilesystemStore)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000004">reset (HTMLTokenizer)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000148">return_to (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000120">safe64 (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000194">sane? (OpenID::TrustRoot)</a><br />
+    <a href="classes/OpenID/Association.html#M000129">serialize (OpenID::Association)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000202">server_id (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000201">server_url (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/ServerAssocs.html#M000174">set (OpenID::ServerAssocs)</a><br />
+    <a href="classes/OpenID/Server/WebResponse.html#M000095">set_redirect (OpenID::Server::WebResponse)</a><br />
+    <a href="classes/OpenID/Util.html#M000028">sha1 (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000068">sign (OpenID::Server::Signatory)</a><br />
+    <a href="classes/OpenID/Association.html#M000134">sign (OpenID::Association)</a><br />
+    <a href="classes/OpenID/Association.html#M000135">sign_hash (OpenID::Association)</a><br />
+    <a href="classes/OpenID/Util.html#M000042">sign_reply (OpenID::Util)</a><br />
+    <a href="classes/String.html#M000025">starts_with? (String)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000206">store_association (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000157">store_association (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000111">store_association (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000138">store_association (OpenID::Store)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000161">store_nonce (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000141">store_nonce (OpenID::Store)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000209">store_nonce (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000115">store_nonce (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Util.html#M000034">str_to_num (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000041">strxor (OpenID::Util)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000199">supports? (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/FakeOpenIDServiceEndpoint.html#M000170">supports? (OpenID::FakeOpenIDServiceEndpoint)</a><br />
+    <a href="classes/TC_TestHTMLTokenizer.html#M000012">test_bad_link (TC_TestHTMLTokenizer)</a><br />
+    <a href="classes/TC_TestHTMLTokenizer.html#M000014">test_comment (TC_TestHTMLTokenizer)</a><br />
+    <a href="classes/TC_TestHTMLTokenizer.html#M000015">test_full (TC_TestHTMLTokenizer)</a><br />
+    <a href="classes/TC_TestHTMLTokenizer.html#M000013">test_namespace (TC_TestHTMLTokenizer)</a><br />
+    <a href="classes/HTMLToken.html#M000018">text (HTMLToken)</a><br />
+    <a href="classes/HTMLText.html#M000011">text (HTMLText)</a><br />
+    <a href="classes/HTMLTag.html#M000023">text (HTMLTag)</a><br />
+    <a href="classes/OpenID/Util.html#M000029">to_base64 (OpenID::Util)</a><br />
+    <a href="classes/HTMLToken.html#M000017">to_s (HTMLToken)</a><br />
+    <a href="classes/HTMLToken.html#M000019">trimmed_text (HTMLToken)</a><br />
+    <a href="classes/OpenID/Server/CheckIDRequest.html#M000055">trust_root_valid (OpenID::Server::CheckIDRequest)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000101">update (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/Util.html#M000050">urinorm (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000038">urlencode (OpenID::Util)</a><br />
+    <a href="classes/OpenID/Util.html#M000048">urls_equal? (OpenID::Util)</a><br />
+    <a href="classes/OpenID/DumbStore.html#M000210">use_nonce (OpenID::DumbStore)</a><br />
+    <a href="classes/OpenID/MemoryStore.html#M000160">use_nonce (OpenID::MemoryStore)</a><br />
+    <a href="classes/OpenID/FilesystemStore.html#M000116">use_nonce (OpenID::FilesystemStore)</a><br />
+    <a href="classes/OpenID/Store.html#M000142">use_nonce (OpenID::Store)</a><br />
+    <a href="classes/OpenID/OpenIDServiceEndpoint.html#M000198">uses_extension? (OpenID::OpenIDServiceEndpoint)</a><br />
+    <a href="classes/OpenID/SuccessRequest.html#M000151">uses_extension? (OpenID::SuccessRequest)</a><br />
+    <a href="classes/OpenID/TrustRoot.html#M000195">validate_url (OpenID::TrustRoot)</a><br />
+    <a href="classes/OpenID/Server/Signatory.html#M000067">verify (OpenID::Server::Signatory)</a><br />
+    <a href="classes/HTMLTokenizer.html#M000002">version (HTMLTokenizer)</a><br />
+    <a href="classes/OpenID/Server/ProtocolError.html#M000089">which_encoding? (OpenID::Server::ProtocolError)</a><br />
+    <a href="classes/OpenID/Server/OpenIDResponse.html#M000103">which_encoding? (OpenID::Server::OpenIDResponse)</a><br />
+    <a href="classes/OpenID/DiffieHellman.html#M000223">xor_secrect (OpenID::DiffieHellman)</a><br />
+  </div>
+</div>
+</body>
+</html>

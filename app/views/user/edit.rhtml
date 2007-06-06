@@ -1,0 +1,11 @@
+<center>
+  <h1><%= @user.name %></h1>
+  <% form_for :user do |form| %>
+    OpenID URL: <%= @user.openid_url %><br />
+    Nickname: <%= @user.nickname %><br />
+    Full Name: <%= @user.fullname %><br />
+    Use Full Name: <%= form.check_box :uses_full_name %><br />
+    Homepage: <%= form.text_field :homepage, :size => 30 %><br />
+    <%= submit_tag %>
+  <% end %>
+</center>
