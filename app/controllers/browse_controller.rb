@@ -7,9 +7,9 @@ require 'zip/zip'
 class BrowseController < ApplicationController
   before_filter :validate_id, :except => :comment
 
-  verify :only => :new,
+  verify :only => [:new, :edit],
          :session => :user_id,
-         :add_flash => { :note => "Please log in to upload stylesheets" },
+         :add_flash => { :notice => "Please log in to upload/edit stylesheets" },
          :redirect_to => '/'
 
   def index

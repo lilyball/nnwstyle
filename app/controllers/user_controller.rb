@@ -14,8 +14,8 @@ class UserController < ApplicationController
 
   verify :only => :edit,
          :session => :user_id,
-         :add_flash => { :note => "You need to be logged in to edit your profile" },
-         :redirect => '/'
+         :add_flash => { :notice => "You need to be logged in to edit your profile" },
+         :redirect_to => '/'
 
   def show
     @user = User.find(params[:id])
