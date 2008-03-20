@@ -1,0 +1,6 @@
+nnwstyle
+Kevin Ballard
+
+nnwstyle is a rails app that provides a repository for NetNewsWire stylesheets.
+It supports uploading and downloading stylesheets and rendering previews.
+The interface is still extremely rough.
